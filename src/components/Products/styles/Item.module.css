@@ -10,4 +10,10 @@
     h2, p {
         color: #333;
     }
+
+    img {
+        max-width: 50px;
+        width: 100%;
+        height: auto;
+    }
 }

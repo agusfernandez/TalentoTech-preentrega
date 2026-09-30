@@ -1,5 +1,5 @@
 import { useState } from "react";
-import estilo from "./ButtonFavourite.module.css";
+import estilo from "./styles/ButtonFavourite.module.css";
 
 const ButtonFavourite = () => {
     const [isFavourite, setIsFavourite] = useState(false);

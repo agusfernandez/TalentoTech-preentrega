@@ -1,12 +1,17 @@
 import ItemList from "./ItemList";
+import {useState, useEffect} from "react";
 
 const ItemListContainer = () => {
  
-  const products = [
-    { id: 1, name: "Velas Aromáticas", price: 8440 },
-    { id: 2, name: "Florero Cerámico", price: 12500 },
-    { id: 3, name: "Lampara de Mesa", price: 28500 },
-  ];  
+  const [products, setProducts] = useState([]);
+  const  API= '../public/data/products.json'
+
+
+  useEffect(() => {
+   fetch(API)
+    .then(response => response.json())
+    .then(data => setProducts(data));
+  }, []);
 
   return (
     <>

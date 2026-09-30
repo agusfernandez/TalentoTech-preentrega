@@ -1,9 +1,9 @@
 
 import { useState } from 'react';
 import ButtonFavourite from './ButtonFavourite';
-import estilo from './Item.module.css';
+import estilo from './styles/Item.module.css';
 
-const Item = ({name, price}) => {
+const Item = ({title, price, description, image}) => {
     const [count, setCount] = useState(1);
     const increment = () => {
         setCount(count + 1);
@@ -19,8 +19,10 @@ const Item = ({name, price}) => {
     <>
         <div className={estilo.item}>
             <ButtonFavourite/>
-            <h2>{name}</h2>
+            <img src={image} alt={title} className={estilo.image}/>
+            <h2>{title}</h2>
             <p>Precio: ${price}</p>
+            <p>{description}</p>
             <div className={estilo.counter}>
                 <button onClick={decrement}>-</button>
                 <span>{count}</span>
