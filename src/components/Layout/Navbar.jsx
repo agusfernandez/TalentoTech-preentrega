@@ -1,10 +1,13 @@
+import estilo from "./styles/Navbar.module.css";
+
+
 const Nabvar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <h1>Mi Sitio Web</h1>
+    <nav className={estilo.navbar}>
+      <div className={estilo.navbarLogo}>
+        <h1>Nórdico</h1>
       </div>
-      <ul className="navbar-links">
+      <ul className={estilo.navbarLinks}>
         <li><a href="/">Inicio</a></li>
         <li><a href="/productos">Productos</a></li>
         <li><a href="/contacto">Contacto</a></li>
