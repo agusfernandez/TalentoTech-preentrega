@@ -1,4 +1,5 @@
 import Layout from "./components/Layout/Layout";
+import ItemListContainer from "./components/Products/ItemListContainer";
 
 function App() {
 
@@ -6,7 +7,7 @@ function App() {
   return (
     <>
       <Layout>  
-          <p>dsds</p>
+          <ItemListContainer/>
       </Layout>
    
     </>
