@@ -1,0 +1,25 @@
+.btn {
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;  
+    background-color: transparent;
+    fill: #fff;
+    stroke: #000;
+
+}
+
+
+.favourite {
+ 
+    .icon {
+        fill: #c15757;
+        stroke: #c15757;
+        
+    }
+}
