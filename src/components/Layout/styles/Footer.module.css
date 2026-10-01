@@ -1,0 +1,36 @@
+.footer {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between
+ 
+}
+
+.linksSection {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 0;
+
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s ease;
+    list-style: none;
+    padding: 0;
+
+}
+
+.link a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+.copyright {
+    text-align: right;
+    color: #000;
+    margin: auto 0;
+}
