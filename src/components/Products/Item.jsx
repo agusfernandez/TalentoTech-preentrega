@@ -33,17 +33,21 @@ const Item = ({id, title, price, description, image}) => {
                 </Link>
                 <p className={style.price}>Precio: ${price}</p>
                 <span className={style.description}>{description}</span>
-                <div className={style.counter}>
-                    <button onClick={decrement} className={style.buttondecrement}>
-                        -
-                    </button>
-                    <span className={style.count}>{count}</span>
-                    <button onClick={increment} className={style.buttonincrement}>
-                        +
-                    </button>
-                </div>
-                <div className={style.button}>
-                    <button className={style.addToCartButton}>Agregar al carrito</button>
+
+
+                <div className={style.actionsbottom}>
+                    <div className={style.counter}>
+                        <button onClick={decrement} className={style.buttondecrement}>
+                            -
+                        </button>
+                        <span className={style.count}>{count}</span>
+                        <button onClick={increment} className={style.buttonincrement}>
+                            +
+                        </button>
+                    </div>
+                    <div className={style.buttoncontainer}>
+                        <button className={style.addToCartButton}>Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
         </div>
