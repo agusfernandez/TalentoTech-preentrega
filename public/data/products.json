@@ -6,7 +6,7 @@
     "category": "velas",
     "description": "Vela aromática de cera de soja con fragancia de vainilla.",
     "stock": 15,
-    "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59"
+    "image": "https://i.ibb.co/2XDgbjf/photo-1603006905003-be475563bc59.jpg"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "category": "decoracion",
     "description": "Florero de cerámica en tono beige, ideal para decorar cualquier ambiente.",
     "stock": 8,
-    "image": "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c"
+    "image": "https://i.ibb.co/jPX35CV0/photo-1612196808214-b8e1d6145a8c.jpg"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "category": "iluminacion",
     "description": "Lámpara de mesa de diseño minimalista para dormitorios o livings.",
     "stock": 6,
-    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c"
+    "image": "https://i.ibb.co/S4Y60vt5/photo-1507473885765-e6ed057f782c.jpg"
   },
   {
     "id": "4",
@@ -33,7 +33,7 @@
     "category": "textiles",
     "description": "Almohadón decorativo de textura suave en tonos neutros.",
     "stock": 12,
-    "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2"
+    "image": "https://i.ibb.co/YB020vQV/photo-1584100936595-c0654b55a2e2.jpg"
   },
   {
     "id": "5",
@@ -42,7 +42,7 @@
     "category": "organizacion",
     "description": "Canasto tejido de fibra natural para organizar y decorar tus espacios.",
     "stock": 10,
-    "image": "https://images.unsplash.com/photo-1595428774223-ef52624120d2"
+    "image": "https://i.ibb.co/HMJ9FvK/photo-1595428774223-ef52624120d2.jpg"
   },
   {
     "id": "6",
@@ -51,7 +51,7 @@
     "category": "velas",
     "description": "Portavelas de cerámica con diseño artesanal para crear un ambiente cálido.",
     "stock": 14,
-    "image": "https://images.unsplash.com/photo-1603905179139-db12ab535b8d"
+    "image": "https://i.ibb.co/chR1QyyC/photo-1718788392540-0862a47c8c30.avif"
   },
   {
     "id": "7",
@@ -60,7 +60,7 @@
     "category": "decoracion",
     "description": "Bandeja de madera de diseño simple, ideal para decorar mesas y espacios de estar.",
     "stock": 9,
-    "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa"
+    "image": "https://i.ibb.co/DgVGh9mw/photo-1610701596007-11502861dcfa.jpg"
   },
   {
     "id": "8",
@@ -69,6 +69,6 @@
     "category": "textiles",
     "description": "Manta tejida de textura suave en color beige, perfecta para el living o dormitorio.",
     "stock": 7,
-    "image": "https://images.unsplash.com/photo-1580301762395-21ce6e7a7b16"
+    "image": "https://i.ibb.co/zVHzd2M2/premium-photo-1763466939843-f73291418e9c.avif"
   }
 ]
