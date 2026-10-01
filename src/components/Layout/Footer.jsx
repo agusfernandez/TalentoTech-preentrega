@@ -1,14 +1,14 @@
-import estilos from "./styles/Footer.module.css";
+import styles from "./styles/Footer.module.css";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
   return (
-    <footer className={estilos.footer}>
-        <ul className={estilos.linksSection}>
-            <li className={estilos.link}><a href="/terminos">Términos y Condiciones</a></li>
-            <li className={estilos.link}><a href="/privacidad">Política de Privacidad</a></li>
+    <footer className={styles.footer}>
+        <ul className={styles.linksSection}>
+            <li className={styles.link}><a href="/terminos">Términos y Condiciones</a></li>
+            <li className={styles.link}><a href="/privacidad">Política de Privacidad</a></li>
         </ul>
-        <p className={estilos.copyright}>&copy; {currentYear} Nórdico. All rights reserved.</p>
+        <p className={styles.copyright}>&copy; {currentYear} Nórdico. All rights reserved.</p>
     </footer>
   );
 };

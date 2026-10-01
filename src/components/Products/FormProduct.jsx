@@ -1,12 +1,12 @@
-import estilos from "./styles/FormProduct.module.css";
+import styles from "./styles/FormProduct.module.css";
 
 const FormProduct = ({manageChange, manageSend, manageChangeImage, datosForm}) => {
 
     return (
         <>
-          <form onSubmit={manageSend} className={estilos.formulario}>
+          <form onSubmit={manageSend} className={styles.formulario}>
                 <h3>Agregar Producto</h3>
-                <div className={estilos.formGroup}>
+                <div className={styles.formGroup}>
                     <label htmlFor="name">Nombre:</label>
                     <input
                         type="text"
@@ -16,7 +16,7 @@ const FormProduct = ({manageChange, manageSend, manageChangeImage, datosForm}) =
                         onChange={manageChange}
                     />
                 </div>
-                <div className={estilos.formGroup}>
+                <div className={styles.formGroup}>
                     <label htmlFor="price">Precio:</label>
                     <input
                         type="number"
@@ -26,7 +26,7 @@ const FormProduct = ({manageChange, manageSend, manageChangeImage, datosForm}) =
                         onChange={manageChange}
                     />
                 </div>
-                <div className={estilos.formGroup}>
+                <div className={styles.formGroup}>
                     <label htmlFor="description">Descripción:</label>
                     <textarea
                         id="description"
@@ -35,7 +35,7 @@ const FormProduct = ({manageChange, manageSend, manageChangeImage, datosForm}) =
                         onChange={manageChange}
                     />  
                 </div>
-                <div className={estilos.formGroup}>
+                <div className={styles.formGroup}>
                     <label htmlFor="stock">Stock:</label>
                     <input
                         type="text"
@@ -45,7 +45,7 @@ const FormProduct = ({manageChange, manageSend, manageChangeImage, datosForm}) =
                         onChange={manageChange}
                     />
                 </div>
-                <div className={estilos.formGroup}>
+                <div className={styles.formGroup}>
                     <label htmlFor="image">Imagen:</label>
                     <input
                         type="file"
@@ -54,7 +54,7 @@ const FormProduct = ({manageChange, manageSend, manageChangeImage, datosForm}) =
                         onChange={manageChangeImage}
                     />
                 </div>
-                <button type="submit" className={estilos.submitButton}>Guardar Productos</button>
+                <button type="submit" className={styles.submitButton}>Guardar Productos</button>
           </form>
         </>
     )

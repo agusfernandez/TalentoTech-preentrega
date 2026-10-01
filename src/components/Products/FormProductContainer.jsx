@@ -40,7 +40,7 @@ const FormProductContainer = () => {
 
         try {
             console.log("Subiendo imagen a Imgbb...");
-            const respuestaImgbb = await fetch(
+            const responseImgbb = await fetch(
                 `https://api.imgbb.com/1/upload?key=${APIKEY}`,
                 {
                 method: "POST",
@@ -48,14 +48,14 @@ const FormProductContainer = () => {
                 },
             );
 
-            const datosImgbb = await respuestaImgbb.json();
+            const dataImgbb = await responseImgbb.json();
 
-            if (datosImgbb.success) {
-                console.log("Imagen subida con éxito. URL:", datosImgbb.data.url);
+            if (dataImgbb.success) {
+                console.log("Imagen subida con éxito. URL:", dataImgbb.data.url);
 
                 const productComplete = {
                     ...datosForm,
-                    urlImagen: datosImgbb.data.url,
+                    urlImagen: dataImgbb.data.url,
                 }
 
                 console.log("Enviando los siguientes datos COMPLETOS a la API:", productComplete);

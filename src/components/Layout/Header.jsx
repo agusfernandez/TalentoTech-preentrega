@@ -1,10 +1,10 @@
 import Navbar from "./Navbar";
-import estilos from "./styles/Header.module.css";
+import styles from "./styles/Header.module.css";
 
 const Header = () => {
     return (
         <>
-            <header className={estilos.header}>
+            <header className={styles.header}>
                 <Navbar/>
             </header>
         
