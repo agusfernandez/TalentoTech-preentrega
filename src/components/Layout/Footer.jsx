@@ -8,7 +8,7 @@ const Footer = () => {
             <li className={estilos.link}><a href="/terminos">Términos y Condiciones</a></li>
             <li className={estilos.link}><a href="/privacidad">Política de Privacidad</a></li>
         </ul>
-        <p className={estilos.copyright}>&copy; {currentYear} My Company. All rights reserved.</p>
+        <p className={estilos.copyright}>&copy; {currentYear} Nórdico. All rights reserved.</p>
     </footer>
   );
 };
