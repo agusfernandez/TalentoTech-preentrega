@@ -2,9 +2,9 @@ import estilos from "./styles/Spinner.module.css";
 
 const Spinner = () => {
     return (
-        <div className={estilos.spinner}>
-            <div className={estilos.doubleBounce1}></div>
-            <div className={estilos.doubleBounce2}></div>
+        <div className={estilos.spinnerOverlay} role="status" aria-label="Cargando">
+            <div className={estilos.spinner}></div>
+            <div className={estilos.spinnerDot}></div>
         </div>
     );
 };
