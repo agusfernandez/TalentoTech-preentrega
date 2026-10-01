@@ -20,13 +20,15 @@ const Item = ({title, price, description, image}) => {
         <div className={estilo.item}>
             <ButtonFavourite/>
             <img src={image} alt={title} className={estilo.image}/>
-            <h2>{title}</h2>
-            <p>Precio: ${price}</p>
-            <p>{description}</p>
-            <div className={estilo.counter}>
-                <button onClick={decrement}>-</button>
-                <span>{count}</span>
-                <button onClick={increment}>+</button>
+            <div className={estilo.infoProduct}>
+                <h2>{title}</h2>
+                <p>Precio: ${price}</p>
+                <p>{description}</p>
+                <div className={estilo.counter}>
+                    <button onClick={decrement}>-</button>
+                    <span>{count}</span>
+                    <button onClick={increment}>+</button>
+                </div>
             </div>
         </div>
     </>
