@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom"; 
 import ButtonFavourite from './ButtonFavourite';
-import estilo from './styles/Item.module.css';
+import style from './styles/Item.module.css';
 
 const Item = ({id, title, price, description, image}) => {
     const [count, setCount] = useState(1);
@@ -18,23 +18,32 @@ const Item = ({id, title, price, description, image}) => {
 
   return (
     <>
-        <div className={estilo.item}>
+        <div className={style.cardContainer}>
             <ButtonFavourite/>
-
-            <Link to={`/product/${id}`} className={estilo.link}>
-                <img src={image} alt={title} className={estilo.image}/>
-            </Link>
-
-            <div className={estilo.infoProduct}>
-                <Link to={`/product/${id}`} className={estilo.link}>
-                    <h2 className={estilo.productTitle}>{title}</h2>
+            
+            <div className={style.imageContainer}>
+                <Link to={`/product/${id}`} className={style.link}>
+                    <img src={image} alt={title} className={style.imageProduct}/>
                 </Link>
-                <p>Precio: ${price}</p>
-                <p>{description}</p>
-                <div className={estilo.counter}>
-                    <button onClick={decrement}>-</button>
-                    <span>{count}</span>
-                    <button onClick={increment}>+</button>
+            </div>
+    
+            <div className={style.infoProduct}>
+                <Link to={`/product/${id}`} className={style.productlink}>
+                    <h2 className={style.productTitle}>{title}</h2>
+                </Link>
+                <p className={style.price}>Precio: ${price}</p>
+                <span className={style.description}>{description}</span>
+                <div className={style.counter}>
+                    <button onClick={decrement} className={style.buttondecrement}>
+                        -
+                    </button>
+                    <span className={style.count}>{count}</span>
+                    <button onClick={increment} className={style.buttonincrement}>
+                        +
+                    </button>
+                </div>
+                <div className={style.button}>
+                    <button className={style.addToCartButton}>Agregar al carrito</button>
                 </div>
             </div>
         </div>
