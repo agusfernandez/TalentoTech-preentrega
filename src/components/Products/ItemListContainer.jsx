@@ -6,7 +6,7 @@ const ItemListContainer = () => {
  
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const  API= '../public/data/products.json'
+  const  API= '/data/products.json'
 
 
   useEffect(() => {

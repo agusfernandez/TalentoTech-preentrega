@@ -10,13 +10,19 @@ const ProductDetail = () => {
     const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-    fetch(`/public/data/products.json/${id}`)
+    fetch(`/data/products.json`)
       .then((res) => {
         if (!res.ok) throw new Error('No se encontró el producto');
         return res.json();
       })
-      .then((datos) => setProduct(datos))
+      .then((data) => {
+        const foundProduct = data.find((item) => item.id === id);
+        if (!foundProduct) throw new Error('Producto no encontrado');
+        setProduct(foundProduct);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [id]);
