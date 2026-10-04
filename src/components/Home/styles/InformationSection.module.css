@@ -1,0 +1,68 @@
+.sectionInfo {
+    margin: 30px 0 10px 0;
+
+     h3 {
+        color: #0A0907;
+        margin: 0 20px;
+        
+    }
+
+    .sectionInfoCard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 20px;
+
+
+        .sectionsCard {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+
+            div {
+                padding: 20px;
+                .iconCardOne,
+                .iconCardTwo,
+                .iconCardThree {
+                    background-color:#EFEEEB;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 10px;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+                .iconCardOne {
+                    background-image: url(../src/assets/Icons/tree.svg);
+                }
+
+                .iconCardTwo {
+                    background-image: url(../src/assets/Icons/hand.svg);
+                }
+
+                .iconCardThree {
+                    background-image: url(../src/assets/Icons/package.svg);
+                }
+
+                span {
+                    color: #715A42;
+                    font-size: .6rem;
+                    text-transform: uppercase;
+                }
+
+                h4 {
+                    color:  #715A42;
+                    font-size: 1.2rem
+                }
+                p {
+                    color: #4B4640;
+                    font-size: 0.8rem
+                }
+            }
+        }
+
+    }
+}
+
+
+
+

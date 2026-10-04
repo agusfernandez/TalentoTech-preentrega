@@ -27,10 +27,12 @@
     text-decoration: none;
     color: #000;
     transition: color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .copyright {
     text-align: right;
     color: #000;
     margin: auto 0;
+    font-size: 0.6rem;
 }
