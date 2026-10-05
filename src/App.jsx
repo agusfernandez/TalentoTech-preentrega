@@ -3,6 +3,7 @@ import Layout from "./components/Layout/Layout";
 import ItemListContainer from "./components/Products/ItemListContainer";
 import ProductDetail from "./components/Products/ProductDetail";
 import Home from "./components/Home/Home";
+import './components/Layout/styles/Global.module.css'
 
 function App() {
 

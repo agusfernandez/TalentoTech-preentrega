@@ -1,0 +1,18 @@
+:root {
+    --background: #FAF9F6;
+    --backgroundCardSections: #FFFFFF; 
+    --textTitle: #0A0907;
+    --textDefinition: #4B4640;
+    --backgroundFooter: #F4F3F1;
+    --backgroundInput: #F4F3F1;
+    --backgroundButton: #000;
+    --textLegend: #715A42;
+    --inputPlaceholder: #7D766F;
+    --fontweightnormal: normal;
+    
+}
+
+body {
+
+    background-color: var(--background);
+}
