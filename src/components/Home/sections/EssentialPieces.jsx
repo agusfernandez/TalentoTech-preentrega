@@ -30,7 +30,7 @@ const EssentialPieces = () => {
     return (
         <>
             <section className={styles.essentialSection}>
-                <div className={styles.essentialSectionTitle}>
+                <div className={`${styles.essentialSectionTitle} ${styles.sectionTitle}`}>
                     <h2 className={styles.essentialTitle}>Piezas Esenciales</h2>
                     <div><button>Ver mas Productos</button></div>
                 </div>

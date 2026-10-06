@@ -10,7 +10,7 @@ const Banner = () => {
                         <p className={styles.homeBannerDescription}>
                             Descubre nuestra colección de productos de alta calidad y diseño escandinavo.
                         </p>
-                        <button className={styles.homeBannerButton}> <a>Explorar Productos</a></button>
+                        <a  className={styles.homeBannerButton}>Explorar Productos</a>
                     </div>
                 </div>
             </section>
