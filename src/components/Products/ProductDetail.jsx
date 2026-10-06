@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import { useParams, Link } from 'react-router-dom';
 import styles from "./styles/ProductDetail.module.css";
+import { MoveLeft } from 'lucide-react';
 
 
 const ProductDetail = () => {
@@ -46,7 +47,7 @@ const ProductDetail = () => {
     return (
         <>
             <div className={styles.productDetail}>
-                <Link to="/products" className={styles.backLink}>Volver a Productos</Link>
+                <div className={styles.goBack}><Link to="/products" className={styles.backLink}><MoveLeft strokeWidth={1} />Volver a Productos</Link></div>
 
                 <div className={styles.productInfo}>
                     <div className={styles.productImageContainer}>
