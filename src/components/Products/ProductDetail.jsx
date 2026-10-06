@@ -21,8 +21,8 @@ const ProductDetail = () => {
     };
 
   useEffect(() => {
-    setLoading(true);
-    setError(null);
+    //setLoading(true);
+    //setError(null);
 
     fetch(`/data/products.json`)
       .then((res) => {
