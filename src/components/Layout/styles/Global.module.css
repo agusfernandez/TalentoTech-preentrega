@@ -57,7 +57,7 @@ select {
     padding: 5px 40px 5px 14px;
     border: none;
     font-family: inherit;
-    color: #000;
+    color: var(--inputPlaceholder);
     cursor: pointer;
     font-size: var(--textplaceholdersize);
     border-radius: 0;
