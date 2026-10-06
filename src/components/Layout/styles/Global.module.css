@@ -9,10 +9,137 @@
     --textLegend: #715A42;
     --inputPlaceholder: #7D766F;
     --fontweightnormal: normal;
-    
+    --labelfontsize: .6rem;
+    --textfontsize: .8rem;
+    --textplaceholdersize: .8rem;
+    --textlineheight: 1rem;
+    --borderradius: 5px;
 }
 
 body {
 
     background-color: var(--background);
 }
+
+h3 {
+    font-weight: var(--fontweightnormal);
+    font-size: 1.4rem;
+    margin: 5px 0 15px;
+}
+
+
+
+ input,
+ select,
+ textarea {
+    background-color: var(--backgroundInput);
+    color: var(--inputPlaceholder);
+    border: none;
+    padding: 0  10px;
+
+    &::placeholder {
+        font-size: var(--textplaceholdersize);
+    }
+    &::focus,
+    &::focus-visible {
+        outline: 1px solid var(--textplaceholdersize);
+        outline-offset: 2px;
+    }
+    
+}
+
+select {
+    appearance: none;
+    background-color: var(--backgroundInput);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding: 5px 40px 5px 14px;
+    border: none;
+    font-family: inherit;
+    color: #000;
+    cursor: pointer;
+    font-size: var(--textplaceholdersize);
+    border-radius: 0;
+
+    &:focus-visible {
+        outline: 2px solid #000;
+        outline-offset: 2px;
+    }
+}
+
+@supports (appearance: base-select) {
+    select,
+    select::picker(select) {
+        appearance: base-select;
+    }
+
+    select {
+        /* saca el triángulo nativo, queda solo tu chevron */
+        &::picker-icon {
+            display: none;
+        }
+
+        &::picker(select) {
+            margin-top: 4px;
+            padding: 6px;
+            background-color: #fff;
+            border: 1px solid #e5e0da;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+
+            &:hover,
+            &:focus-visible {
+                background-color: #f3f0ec;
+            }
+
+            &:checked {
+                font-weight: 600;
+            }
+
+            /* mueve el tilde ✓ a la derecha */
+            &::checkmark {
+                order: 1;
+            }
+        }
+    }
+}
+
+textarea {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button {
+    padding: 5px 15px;
+    background-color: var(--backgroundButton);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    height: 30px;
+
+}
+
+.cards {
+    background-color: var(--backgroundCardSections);
+    border-radius:  var(--borderradius);
+    padding: 20px 0;
+}
+

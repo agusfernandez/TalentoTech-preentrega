@@ -1,0 +1,44 @@
+@import '../../Layout/styles/Global.module.css';
+
+
+.sectionForm {
+    width: 100%;
+    form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+
+        .formgroupDouble,
+        .formgroup {
+            display:flex;
+            flex-direction: column;
+            gap: 5px;
+
+            label{
+                text-transform: uppercase;
+                font-size: .8rem
+            }
+
+
+            input {
+                height: 35px;
+            }
+        }
+
+        .formgroupDouble {
+                flex: 1 1 calc(50% - 5px);
+
+                @media (max-width: 600px) {
+                    flex-basis: 100%;
+                }
+
+    
+        }
+
+        .formgroup {
+            flex: 1 1 100%;
+        }
+    }
+}
