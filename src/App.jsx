@@ -4,6 +4,7 @@ import ItemListContainer from "./components/Products/ItemListContainer";
 import ProductDetail from "./components/Products/ProductDetail";
 import Home from "./components/Home/Home";
 import Contact from "./components/Layout/Contact";
+import Cart from "./components/Cart/Cart";
 import './components/Layout/styles/Global.module.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/products" element={<ItemListContainer/>}/>
             <Route path="/product/:id" element={<ProductDetail/>}/>
             <Route path="/contact" element={<Contact/>}/>
+            <Route path="/cart" element={<Cart/>}/>
         </Route>
     </Routes>
     </>

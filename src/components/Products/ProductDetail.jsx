@@ -1,15 +1,33 @@
 import {useState, useEffect} from "react";
 import { useParams, Link } from 'react-router-dom';
+import { useCart } from "../context/CartContext";
 import styles from "./styles/ProductDetail.module.css";
 import { MoveLeft } from 'lucide-react';
 
 
 const ProductDetail = () => {
     const { id } = useParams();
+    const {addToCart} = useCart();
+
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [count, setCount] = useState(1);
+
+    const manageAddToCart = () => {
+        const formatProduct = {
+            id: product.id,
+            name: product.title,
+            price: product.price,
+            image: product.image
+        };
+
+        console.log("Agregar el Carrito:" ,{
+            product: formatProduct,
+            ammount: count
+        })
+        addToCart({product:formatProduct, ammount: count});
+    }
 
     const increment = () => {
         setCount(count + 1);
@@ -21,27 +39,27 @@ const ProductDetail = () => {
         }
     };
 
-  useEffect(() => {
-    //setLoading(true);
-    //setError(null);
+    useEffect(() => {
+        //setLoading(true);
+        //setError(null);
 
-    fetch(`/data/products.json`)
-      .then((res) => {
-        if (!res.ok) throw new Error('No se encontró el producto');
-        return res.json();
-      })
-      .then((data) => {
-        const foundProduct = data.find((item) => item.id === id);
-        if (!foundProduct) throw new Error('Producto no encontrado');
-        setProduct(foundProduct);
-      })
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, [id]);
+        fetch(`/data/products.json`)
+        .then((res) => {
+            if (!res.ok) throw new Error('No se encontró el producto');
+            return res.json();
+        })
+        .then((data) => {
+            const foundProduct = data.find((item) => item.id === id);
+            if (!foundProduct) throw new Error('Producto no encontrado');
+            setProduct(foundProduct);
+        })
+        .catch((err) => setError(err.message))
+        .finally(() => setLoading(false));
+    }, [id]);
 
-  if (loading) return <p>Cargando...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!product) return <p>Producto no encontrado</p>;
+    if (loading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!product) return <p>Producto no encontrado</p>;
 
 
     return (
@@ -67,7 +85,7 @@ const ProductDetail = () => {
                                 <button onClick={increment} className={styles.buttonincrementDetail}>+</button>
                             </div>
 
-                            <button className={styles.addToCartButton}>Agregar al Carrito</button>
+                            <button className={styles.addToCartButton} onClick={manageAddToCart}>Agregar al Carrito</button>
                         </div>
 
 
