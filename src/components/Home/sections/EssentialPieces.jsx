@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import styles from '../styles/EssentialPieces.module.css';
-
+import { Link } from "react-router-dom";
 
 const EssentialPieces = () => {
     const [productsEssential, setProducsEssential] = useState([]);
@@ -32,16 +32,19 @@ const EssentialPieces = () => {
             <section className={styles.essentialSection}>
                 <div className={`${styles.essentialSectionTitle} ${styles.sectionTitle}`}>
                     <h2 className={styles.essentialTitle}>Piezas Esenciales</h2>
-                    <div><button>Ver mas Productos</button></div>
+                    <div><button><Link to="/products">Ver más Productos</Link></button></div>
                 </div>
                 <div className={styles.essentialDataSection}>
                     {productsEssential.map(product => (
                         <div key={product.id} className={styles.essentialCard}>
-                            <div className={styles.essentialImage}><img src={product.image}></img></div>
-                            <div className={styles.essentialDetails}>
-                                <h3>{product.title}</h3>
-                                <span>${product.price}</span>
-                            </div>
+                            <Link to={`/product/${product.id}`}>  
+                                <div className={styles.essentialImage}><img src={product.image}></img></div>
+                                <div className={styles.essentialDetails}>
+                                    <h3>{product.title}</h3>
+                                    <span>${product.price}</span>
+                                </div>
+                            </Link>
+
                         </div>
                     ))}
                 </div>
