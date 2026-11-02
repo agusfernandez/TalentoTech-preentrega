@@ -29,15 +29,17 @@ export const CartProvider = ({children}) => {
         console.log("Añadiendo al carrito - Producto:", product, "Cantidad:", ammount);
     }
 
-
+    //emptyCart method
     const emptyCart = () => {
         setCart([]);
     }
 
+    //Sumatoria de items en el carrito
     const itemsInCart = () => {
         return cart.reduce((accumulator, item) => accumulator + item.ammount, 0);
     }
 
+    //Sumatoria de precio total de items en el carrito
     const totalAmmount = () => {
         return cart.reduce((accumulator, item) => accumulator + (item.price * item.ammount), 0);
     }

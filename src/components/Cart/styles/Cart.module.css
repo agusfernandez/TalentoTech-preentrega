@@ -1,1 +1,74 @@
 @import '../../Layout/styles/Global.module.css';
+
+.cartSection {
+    margin: 20px;
+    .cartProduct {
+        background-color: var(--backgroundCardSections);
+        display: flex;
+        flex-direction: row;
+        gap: 20px; 
+        border-radius: 15px;
+        padding: 20px;
+        .cartImage {
+            width: 20%;
+            max-height: 150px;
+            border-radius: 10px;
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+            }
+        }
+
+        .cartDetails {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+
+            .cartDetailsBox {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            h4 {
+                color: var(--textTitle);
+                font-weight: 500;
+                font-size: 1.5rem;
+                margin: 0;
+            }
+            .cartSubtotal {
+                color: var(--textTitle);
+                font-size: .9rem;
+                margin: 0;
+            }
+        }
+
+    }
+
+    .cartTotal {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: var(--backgroundCardSections);
+        border-radius: 15px;
+
+        .cartTotaltext {
+            color: var(--textTitle);
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+
+    }
+}
