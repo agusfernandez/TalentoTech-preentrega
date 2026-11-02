@@ -37,11 +37,11 @@ const EssentialPieces = () => {
                 <div className={styles.essentialDataSection}>
                     {productsEssential.map(product => (
                         <div key={product.id} className={styles.essentialCard}>
-                            <Link to={`/product/${product.id}`}>  
+                            <Link className={styles.essentiaLink} to={`/product/${product.id}`}>  
                                 <div className={styles.essentialImage}><img src={product.image}></img></div>
                                 <div className={styles.essentialDetails}>
-                                    <h3>{product.title}</h3>
-                                    <span>${product.price}</span>
+                                    <h3  className={styles.essentialName}>{product.title}</h3>
+                                    <span className={styles.essentialPrice}>${product.price}</span>
                                 </div>
                             </Link>
 

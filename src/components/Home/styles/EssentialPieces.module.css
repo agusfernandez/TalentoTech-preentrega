@@ -48,20 +48,29 @@
                 border-radius: 5px;
                 padding: 10px;
 
+                .essentiaLink {
+                    text-decoration: none;
+                    color: var(--textTitle);
+                }
+
                 .essentialDetails {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
                     align-items: center;
-                    h3 {
+                    padding: 15px 0;
+                    .essentialName {
                         color: var(--textTitle);
                         font-weight: normal;
                         font-size: 1rem;
+                        margin: 0;
+                        text-decoration: none;
 
                     }
-                    .price {
+                    .span {
                         color: var(--textTitle);
                         font-size: 1rem;
+                        text-decoration: none;
                     }
                 }
 
