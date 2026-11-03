@@ -44,7 +44,7 @@
         margin-bottom: 20px;
         .cartImage {
             width: 20%;
-            max-height: 150px;
+            max-height: 200px;
             border-radius: 10px;
             .image {
                 width: 100%;
@@ -80,6 +80,28 @@
                 color: var(--textTitle);
                 font-size: .9rem;
                 margin: 0;
+            }
+
+            .cartRemoveButton {
+                background-color: var(--backgroundButton);
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-transform: uppercase;
+                padding: 5px;
+                transition: background-color 0.3s ease;
+                height: 40px;
+                width: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &:hover {
+                    background-color: var(--backgroundButtonHover);
+                    color: var(--textTitle);
+                    border: 1px solid var(--backgroundButton);
+                }
             }
         }
 
