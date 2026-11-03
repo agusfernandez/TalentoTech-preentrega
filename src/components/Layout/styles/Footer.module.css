@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--backgroundFooter);
-    padding: 30px;
+    padding:  2rem 2.3rem;
     .newsletterSection {
         background-color: var( --background);
         padding: 20px;

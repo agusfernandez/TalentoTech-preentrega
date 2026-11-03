@@ -21,6 +21,10 @@ body {
     background-color: var(--background);
 }
 
+h1 {
+    letter-spacing: 0;
+}
+
 h3 {
     font-weight: var(--fontweightnormal);
     font-size: 1.4rem;
