@@ -24,22 +24,48 @@ const Cart = () => {
                             <div className={styles.cartDetails}>
                                 <div className={styles.cartDetailsBox}>
                                     <h4 className={styles.cartProductName}>{item.name}</h4>
-                                    <p className={styles.cartPrice}>${item.price}</p>
-                                </div>
-                        
-                                <p className={styles.cartSubtotal}>Subtotal: ${(item.price * item.ammount).toFixed(2)}</p>
-                                <button className={styles.cartRemoveButton} onClick={() => removeProduct(item.id)}><Trash strokeWidth={1} /></button>
-                                <div className={styles.cartQuantity}>
-                                    <span className={styles.cartQuantityLabel}>Cantidad:</span>
-                                    <span className={styles.cartQuantityValue}>{item.ammount}</span>
+                             
                                 </div>
 
-                                   
-                                <div className={styles.counterDetail}>
-                                    <button className={styles.counterButton} onClick={() => decrement(item.id)}>-</button>
-                                    <span className={styles.counterValue}>{item.ammount}</span>
-                                    <button className={styles.counterButton} onClick={() => increment(item.id)}>+</button>
+                                <div className={styles.cartDescription}>
+                                    <p>{item.description}</p>
                                 </div>
+
+                                <div className={styles.cartRow}>
+                                    <div className={styles.cartQuantity}>
+                                        <span className={styles.cartLegend}>Cantidad:</span>
+                                        <span className={styles.cartData}>{item.ammount}</span>
+                                    </div>
+                                    <div className={styles.cartPriceDetail}>
+                                        <div className={styles.cartPrice}>
+                                            <span className={styles.cartLegend}>Precio Unitario:</span>
+                                            <span className={styles.cartData}>${item.price}</span>
+                                        </div>
+                                        <div className={styles.cartSubtotal}>
+                                            <span className={styles.cartLegend}>Subtotal:</span> 
+                                            <span className={styles.cartData}>${(item.price * item.ammount).toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                       
+
+
+                                </div>
+                      
+
+
+                                <div className={styles.cartDetailsLow}>
+                                    <div className={styles.counterDetail}>
+                                        <button className={styles.buttondecrementDetail} onClick={() => decrement(item.id)}>-</button>
+                                        <span className={styles.counterDetailInput}>{item.ammount}</span>
+                                        <button className={styles.buttonincrementDetail} onClick={() => increment(item.id)}>+</button>
+                                    </div>
+                                    <button className={styles.cartRemoveButton} onClick={() => removeProduct(item.id)}><Trash strokeWidth={1} /></button>
+
+                            
+                                
+                                </div>   
+                           
+
                             </div>
                         </div>
                     ))}

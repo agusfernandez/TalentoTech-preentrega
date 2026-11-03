@@ -44,7 +44,7 @@
         margin-bottom: 20px;
         .cartImage {
             width: 20%;
-            max-height: 200px;
+            max-height: 100vh;
             border-radius: 10px;
             .image {
                 width: 100%;
@@ -68,6 +68,7 @@
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
+                flex-wrap: wrap;
             }
 
             h4 {
@@ -76,10 +77,87 @@
                 font-size: 1.5rem;
                 margin: 0;
             }
-            .cartSubtotal {
-                color: var(--textTitle);
-                font-size: .9rem;
-                margin: 0;
+
+       
+
+
+    
+
+            .cartRow {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                    .cartSubtotal,
+                    .cartPrice,
+                    .cartQuantity {
+                        color: var(--textTitle);
+                        font-size: .9rem;
+                        margin: 0;
+                        text-align: right;
+                        .cartLegend {
+                            font-size: .8rem;
+                            color: var(--textLegend);
+                            text-transform: uppercase;
+                            margin-right: 5px;
+                        }
+
+                        .cartData {
+                            color: var(--textTitle);
+                        }
+                    }
+                .cartPriceDetail {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: left;
+                    gap: 0px;
+           
+                }
+            }
+
+        
+            .cartDescription {
+                font-size: .8rem;
+                color: var(--textDefinition);
+            }
+
+            .cartDetailsLow {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+                .counterDetail {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    border: 1px solid #CEC5BD;
+                    background-color: #F4F3F1;
+                        .buttondecrementDetail,
+                        .buttonincrementDetail {
+                            padding: 5px 5px;
+                            background-color: transparent;
+                            font-size: 1rem;
+                            color: #000;
+                            width: 40px;
+                            height: 40px;
+                            border: none;       
+                        }
+                        .counterDetailInput {
+                            width: 40px;
+                            height: 40px;
+                            text-align: center;
+                            border: none;
+                            background-color: transparent;
+                            font-size: 0.8rem;
+                            color: #000;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                  }
+              }
             }
 
             .cartRemoveButton {
