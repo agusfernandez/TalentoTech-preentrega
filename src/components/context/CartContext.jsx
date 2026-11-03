@@ -29,6 +29,28 @@ export const CartProvider = ({children}) => {
         console.log("Añadiendo al carrito - Producto:", product, "Cantidad:", ammount);
     }
 
+    //removeProduct method
+    const removeProduct = (id) => {
+        setCart( previusCart => previusCart.filter(item => item.id !== id));
+    }
+
+    //Increment and Decrement methods
+    const increment = (id) => {
+        setCart(prevCart =>
+        prevCart.map(item =>
+            item.id === id ? { ...item, ammount: item.ammount + 1 } : item
+        )
+        );
+    };
+
+    const decrement = (id) => {
+        setCart(prevCart =>
+        prevCart.map(item =>
+            item.id === id && item.ammount > 1 ? { ...item, ammount: item.ammount - 1 } : item
+        )
+        );
+    };
+
     //emptyCart method
     const emptyCart = () => {
         setCart([]);
@@ -49,6 +71,9 @@ export const CartProvider = ({children}) => {
             cart,
             addToCart,
             emptyCart,
+            removeProduct,
+            increment,
+            decrement,
             itemsInCart,
             totalAmmount
         }}>{children}</CartContext.Provider>
