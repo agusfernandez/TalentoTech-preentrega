@@ -1,7 +1,7 @@
 import styles from "./styles/Navbar.module.css";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from 'lucide-react';
-import { useCart} from '../context/CartContext';
+import { useCart} from '../../context/CartContext';
 
 const Navbar = () => {
   const {itemsInCart} = useCart();

@@ -1,5 +1,5 @@
 import styles from "./styles/Cart.module.css";
-import {useCart} from '../context/CartContext';
+import {useCart} from '../../context/CartContext';
 import { Trash } from 'lucide-react';
 
 const Cart = () => {
