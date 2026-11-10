@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from "react-router-dom"; 
-import ButtonFavourite from './ButtonFavourite';
+import ButtonFavourite from '../ButtonFavourite';
 import style from './styles/Item.module.css';
 
 const Item = ({id, title, price, description, image}) => {

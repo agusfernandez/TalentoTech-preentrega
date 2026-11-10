@@ -1,5 +1,5 @@
 import ItemList from "./ItemList";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 import {useState, useEffect} from "react";
 
 const ItemListContainer = () => {

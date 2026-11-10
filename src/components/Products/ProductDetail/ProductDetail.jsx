@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import { useParams, Link } from 'react-router-dom';
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../../context/CartContext";
 import styles from "./styles/ProductDetail.module.css";
 import { MoveLeft } from 'lucide-react';
 
