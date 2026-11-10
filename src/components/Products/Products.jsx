@@ -3,6 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import Spinner from './Spinner';
 import styles from './styles/Products.module.css';
+import {Link} from "react-router-dom";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -52,15 +53,20 @@ const Products = () => {
                     <p>No hay productos habilitados.</p>
                 ) : (
                     products.map(product => (
-                        <div key={product.id} className={styles.productCard}>
+                        <div key={product.id} className={styles.cardContainer}>
                             <div className={styles.imageContainer}>
                                 <img src={product.image} alt={product.title} className={styles.productImage} />
+                                <span className={styles.categorylegend}>{product.category}</span>
+
                             </div>
-                            <h3>{product.title}</h3>
-                            <p>Precio: ${product.price}</p>
-                            <p>{product.description}</p>
-                            <p>Stock: {product.stock}</p>
-                            <p>Categoría: {product.category}</p>
+                            <div className={styles.infoProduct}>
+                                <Link to={`/product/${product.id}`} className={styles.productLink}>
+                                    <h3 className={styles.productTitle}>{product.title}</h3>
+                                </Link>
+                                <p className={styles.price}>Precio: ${product.price}</p>
+                                <p className={styles.description}>{product.description}</p>
+                                <p className={styles.stock}>Stock: {product.stock}</p>
+                            </div>
                         </div>
                     ))
                 )}

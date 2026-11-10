@@ -1,8 +1,12 @@
 import {useState, useEffect} from "react";
 import { useParams, Link } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../../firebase/config';
 import { useCart } from "../../../context/CartContext";
 import styles from "./styles/ProductDetail.module.css";
 import { MoveLeft } from 'lucide-react';
+import Spinner from "../Spinner";
+
 
 
 const ProductDetail = () => {
@@ -41,24 +45,41 @@ const ProductDetail = () => {
     };
 
     useEffect(() => {
-        //setLoading(true);
-        //setError(null);
+        const getProduct = async () => {
+            try {
+                // Si el ID es numérico, viene del JSON local
+                const isNumericId = !isNaN(id);
 
-        fetch(`/data/products.json`)
-        .then((res) => {
-            if (!res.ok) throw new Error('No se encontró el producto');
-            return res.json();
-        })
-        .then((data) => {
-            const foundProduct = data.find((item) => item.id === id);
-            if (!foundProduct) throw new Error('Producto no encontrado');
-            setProduct(foundProduct);
-        })
-        .catch((err) => setError(err.message))
-        .finally(() => setLoading(false));
+                if (isNumericId) {
+                    console.log('ID numérico detectado, buscando en JSON local...');
+                    const res = await fetch('/data/products.json');
+                    if (!res.ok) throw new Error('No se pudo cargar el archivo local');
+                    const data = await res.json();
+                    const foundProduct = data.find((item) => String(item.id) === String(id));
+                    if (!foundProduct) throw new Error('Producto no encontrado en JSON local');
+                    console.log('Producto encontrado en JSON:', foundProduct);
+                    setProduct(foundProduct);
+                } else {
+                    console.log('ID de Firestore detectado, buscando en Firebase...');
+                    const docRef = doc(db, 'products', id);
+                    const docSnap = await getDoc(docRef);
+                    if (!docSnap.exists()) throw new Error('Producto no encontrado en Firestore');
+                    const foundProduct = { id: docSnap.id, ...docSnap.data() };
+                    console.log('Producto encontrado en Firestore:', foundProduct);
+                    setProduct(foundProduct);
+                }
+            } catch (err) {
+                console.error('❌ Error al buscar el producto:', err.message);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getProduct();
     }, [id]);
 
-    if (loading) return <p>Cargando...</p>;
+    if (loading) return <Spinner />;
     if (error) return <p>Error: {error}</p>;
     if (!product) return <p>Producto no encontrado</p>;
 
