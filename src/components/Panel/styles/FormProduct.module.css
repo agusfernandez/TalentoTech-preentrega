@@ -1,0 +1,9 @@
+@import '../../Layout/styles/Global.module.css';
+
+form {
+    background-color: var(--bg-card);
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+}

@@ -2,10 +2,10 @@
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--backgroundFooter);
+    background-color: var( --bg-subtle);
     padding:  2rem 2.3rem;
     .newsletterSection {
-        background-color: var( --background);
+        background-color: var( --bg-page);
         padding: 20px;
         border-radius: 5px;
         display: flex;
@@ -15,13 +15,13 @@
         align-items: center;
         span {
             font-size: .6rem;
-            color: var(--textLegend);
+            color: var(--text-accent);
         }
         p {
             width: 60%;
             text-align: center;
             font-size: .8rem;
-            color: var(--textDefinition);
+            color: var(--text-secondary);
         }
         .inputSection {
             padding: 10px;
@@ -34,13 +34,13 @@
             
 
             input {
-                background-color: var(--backgroundInput);
+                background-color: var( --bg-subtle);
                 border: none;
                 padding: 10px;
                 width: 340px;
                 height: 25px;
                 border-radius: 5px;
-                color: var(--inputPlaceholder);
+                color: var(--text-muted);
             }
             button {
                 font-size: 0.8rem;

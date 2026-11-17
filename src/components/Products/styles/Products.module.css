@@ -34,7 +34,7 @@
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                background-color:var(--textLegend);
+                background-color:var(--text-accent);
                 color: #fff;
                 padding: 5px 10px;
                 border-radius: 4px;
@@ -53,7 +53,7 @@
                 .productTitle, 
                 h3 {
                     font-size: 1.2rem;
-                    color: var(--textTitle);
+                    color: var(--text-primary);
                     text-decoration: none;
                     margin-top: 10px;
                     height:30px;

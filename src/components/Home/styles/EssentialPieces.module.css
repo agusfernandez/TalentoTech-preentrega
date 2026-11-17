@@ -12,14 +12,14 @@
 
 
         h2 {
-            color: var(--textTitle);
+            color: var(--text-primary);
             font-weight: normal;
             font-size: 1.3rem
         }
 
         button {
                 padding: 5px 15px;
-                background-color: var(--backgroundButton);
+                background-color: var(--bg-button-primary);
                 color: #fff;
                 border: none;
                 border-radius: 4px;
@@ -50,7 +50,7 @@
 
                 .essentiaLink {
                     text-decoration: none;
-                    color: var(--textTitle);
+                    color: var(--text-primary);
                 }
 
                 .essentialDetails {
@@ -60,7 +60,7 @@
                     align-items: center;
                     padding: 15px 0;
                     .essentialName {
-                        color: var(--textTitle);
+                        color: var(--text-primary);
                         font-weight: normal;
                         font-size: 1rem;
                         margin: 0;
@@ -68,7 +68,7 @@
 
                     }
                     .span {
-                        color: var(--textTitle);
+                        color: var(--text-primary);
                         font-size: 1rem;
                         text-decoration: none;
                     }

@@ -29,7 +29,7 @@
           justify-content: space-between;
           flex-wrap: wrap;
           margin-top: 20px;
-          background-color: var(--backgroundCardSections);
+          background-color: var(--bg-card);
           padding: 20px;
           border-radius: 10px;
           

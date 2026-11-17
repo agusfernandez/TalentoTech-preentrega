@@ -4,7 +4,7 @@
     margin: 2rem 2.3rem;
 
      h3 {
-        color:var(--textTitle);
+        color:var(--text-primary);
         margin: 0 20px;
         font-weight: normal;
         font-size: 1.3rem
@@ -48,13 +48,13 @@
                 }
 
                 span {
-                    color: var(--textLegend);
-                    font-size: var(--labelfontsize);
+                    color: var(--text-accent);
+                    font-size: var(--text-size-label);
                     text-transform: uppercase;
                 }
 
                 h4 {
-                    color: var(--textLegend);
+                    color: var(--text-accent);
                     font-size: 1.2rem
                 }
                 p {

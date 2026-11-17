@@ -1,24 +1,59 @@
 :root {
-    --background: #FAF9F6;
-    --backgroundCardSections: #FFFFFF; 
-    --textTitle: #0A0907;
-    --textDefinition: #4B4640;
-    --backgroundFooter: #F4F3F1;
-    --backgroundInput: #F4F3F1;
-    --backgroundButton: #000;
-    --textLegend: #715A42;
-    --inputPlaceholder: #7D766F;
-    --fontweightnormal: normal;
-    --labelfontsize: .6rem;
-    --textfontsize: .8rem;
-    --textplaceholdersize: .8rem;
-    --textlineheight: 1rem;
-    --borderradius: 5px;
+
+    /* =========================================
+       1. TOKENS PRIMITIVOS (Valores base)
+       ========================================= */
+
+       /* Paleta de colores */
+    --color-neutral-0: #FFFFFF;
+    --color-neutral-50: #FAF9F6;
+    --color-neutral-100: #F4F3F1;
+    --color-neutral-500: #7D766F;
+    --color-neutral-700: #4B4640;
+    --color-neutral-900: #0A0907;
+    --color-neutral-1000: #000000;
+    --color-brand-brown: #715A42;
+
+    /* Tipografía base */
+    --font-size-xs: 0.6rem;
+    --font-size-sm: 0.8rem;
+    --font-weight-normal: 400;
+    --line-height-sm: 1rem;
+
+
+    /* Espaciado y bordes */
+    --radius-sm: 5px;
+
+    /* =========================================
+       2. TOKENS SEMÁNTICOS (Uso en componentes)
+       ========================================= */
+
+    --bg-page: var(--color-neutral-50);
+    --bg-card: var(--color-neutral-0);
+    --bg-subtle: var(--color-neutral-100); /* Reutilizable para footer e inputs */
+    --bg-button-primary: var(--color-neutral-1000);
+
+    /* Textos */
+    --text-primary: var(--color-neutral-900);
+    --text-secondary: var(--color-neutral-700);
+    --text-muted: var(--color-neutral-500); /* Ideal para placeholders */
+    --text-accent: var(--color-brand-brown); /* Para leyendas o destacados */
+
+    /* Tipografía aplicada */
+    --text-size-label: var(--font-size-xs);
+    --text-size-body: var(--font-size-sm);
+    --text-size-input: var(--font-size-sm);
+    --text-leading-body: var(--line-height-sm);
+
+    /* Componentes */
+    --radius-component: var(--radius-sm);
+
+
 }
 
 body {
 
-    background-color: var(--background);
+    background-color: var(--bg-page);
 }
 
 h1 {
@@ -26,10 +61,10 @@ h1 {
 }
 
 h3 {
-    font-weight: var(--fontweightnormal);
+    font-weight: var(--font-weight-normal);
     font-size: 1.4rem;
     margin: 5px 0 15px;
-    color: var(--textTitle);
+    color: var(--text-primary);
 }
 
 a {
@@ -42,17 +77,17 @@ a {
  input,
  select,
  textarea {
-    background-color: var(--backgroundInput);
-    color: var(--inputPlaceholder);
+    background-color: var( --bg-subtle);
+    color: var(--text-muted);
     border: none;
     padding: 0  10px;
 
     &::placeholder {
-        font-size: var(--textplaceholdersize);
+        font-size: var(--text-size-body);
     }
     &::focus,
     &::focus-visible {
-        outline: 1px solid var(--textplaceholdersize);
+        outline: 1px solid var(--text-size-body);
         outline-offset: 2px;
     }
     
@@ -60,16 +95,16 @@ a {
 
 select {
     appearance: none;
-    background-color: var(--backgroundInput);
+    background-color: var( --bg-subtle);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     padding: 5px 40px 5px 14px;
     border: none;
     font-family: inherit;
-    color: var(--inputPlaceholder);
+    color: var(--text-muted);
     cursor: pointer;
-    font-size: var(--textplaceholdersize);
+    font-size: var(--text-size-body);
     border-radius: 0;
 
     &:focus-visible {
@@ -135,7 +170,7 @@ textarea {
 
 button {
     padding: 5px 15px;
-    background-color: var(--backgroundButton);
+    background-color: var(--bg-button-primary);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -148,8 +183,8 @@ button {
 }
 
 .cards {
-    background-color: var(--backgroundCardSections);
-    border-radius:  var(--borderradius);
+    background-color: var(--bg-card);
+    border-radius:  var(--radius-component);
     padding: 20px 0;
 }
 
