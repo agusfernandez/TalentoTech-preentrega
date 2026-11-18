@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { collection, addDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import FormProduct from "./FormProduct";
+import Modal from "./Modal"; 
 
-const IMGBB_APIKEY = '89b00719fa2b5c71de2c3d943368663d';
+const IMGBB_APIKEY = import.meta.env.VITE_IMGBB_APIKEY;
 
 const emptyForm = {
     title: '',
@@ -19,6 +20,17 @@ const FormProductContainer = ({ productEdit, onProductAdded }) => {
     const [image, setImage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
+    const [modal, setModal] = useState({isOpen:false, type:"success", title:"", message:"", onClose:null});
+
+
+    const showModal = (type, title, message, onClose = null) =>
+    setModal({ isOpen: true, type, title, message, onClose });
+
+    const closeModal = () => {
+        const callback = modal.onClose;
+        setModal(prev => ({ ...prev, isOpen: false, onClose: null }));
+        if (callback) callback();
+    };
 
     // Si viene un producto a editar, pre-llenamos el form
     useEffect(() => {
@@ -125,52 +137,58 @@ const FormProductContainer = ({ productEdit, onProductAdded }) => {
             }
 
             if (productEdit) {
-                // ── EDITAR producto existente ──
-                const docRef = doc(db, 'products', productEdit.id);
-                await updateDoc(docRef, dataToSend);
+                await updateDoc(doc(db, 'products', productEdit.id), dataToSend);
 
-                alert("Producto Actualizado con éxito");
-                console.log("Producto actualizado:", productEdit.id);
-                
-                if(onProductAdded) {
-                    onProductAdded({id:onProductAdded.id, ...dataToSend}, true);
-                }
+                    showModal(
+                        "success",
+                        "Producto actualizado",
+                        "Los cambios se guardaron con éxito.",
+                        () => onProductAdded?.({ id: productEdit.id, ...dataToSend }, true)
+                    );
 
             } else {
             
-                const docRef = await addDoc(collection(db, 'products'), dataToSend);
-                alert("Producto agregado con éxito");
-                console.log("Producto creado con id:", docRef.id);
-                    
-                if(onProductAdded) {
-                    onProductAdded({id:onProductAdded.id, ...dataToSend}, false);
-                }
+                      const docRef = await addDoc(collection(db, 'products'), dataToSend);
 
-                setDataForm(emptyForm)
+                        setDataForm(emptyForm);
+                        setImage(null);
 
-                setImage(null)
-
+                        showModal(
+                            "success",
+                            "Producto agregado",
+                            "El producto se creó con éxito.",
+                            () => onProductAdded?.({ id: docRef.id, ...dataToSend }, false)
+                        );
 
             }
 
         } catch (error) {
             console.error("Error al guardar el producto:", error);
-            alert("Hubo un error al guardar el producto. Intentá de nuevo.");
+            showModal("error", "Ups, hubo un error", "No pudimos guardar el producto. Intentá de nuevo.");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <FormProduct
-            dataForm={dataForm}
-            manageChange={manageChange}
-            manageSend={manageSend}
-            manageChangeImage={manageChangeImage}
-            loading={loading}
-            isEditing={!!productEdit}
-            errors={errors}
-        />
+        <>
+            <FormProduct
+                dataForm={dataForm}
+                manageChange={manageChange}
+                manageSend={manageSend}
+                manageChangeImage={manageChangeImage}
+                loading={loading}
+                isEditing={!!productEdit}
+                errors={errors}
+            />
+            <Modal
+                isOpen={modal.isOpen}
+                type={modal.type}
+                title={modal.title}
+                message={modal.message}
+                onClose={closeModal}
+            />
+        </>
     );
 };
 
