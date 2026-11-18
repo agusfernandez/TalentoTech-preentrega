@@ -52,36 +52,35 @@ const FormProductContainer = ({ productEdit, onProductAdded }) => {
     const validateErrors = () => {
         const newErrors = {};
 
-        if(!dataForm.title.trim()){
-            newErrors.title= "El nombre no puede quedar vacio"
+        if (!dataForm.title.trim()) {
+            newErrors.title = "El nombre no puede quedar vacío";
         }
 
-        if(!dataForm.price()){
-            newErrors.price= "El precio no puede quedar vacio"
-        } else if ( Number(dataForm.price) <= 1){
-            newErrors.price= "El precio debe ser mayor que 1"
+        if (!dataForm.price) {
+            newErrors.price = "El precio no puede quedar vacío";
+        } else if (Number(dataForm.price) <= 0) {
+            newErrors.price = "El precio debe ser mayor que 0";
         }
 
-        if (!dataForm.stock === "" || dataForm.stock === undefined){
-            newErrors.stock = "El stock no puede quedar vacio"
-        } else if (Number(dataForm.stock) <= 0) {
-            newErrors.stock = "El stock no puede ser negativo"
+        if (dataForm.stock === "" || dataForm.stock === undefined || dataForm.stock === null) {
+            newErrors.stock = "El stock no puede quedar vacío";
+        } else if (Number(dataForm.stock) < 0) {
+            newErrors.stock = "El stock no puede ser negativo";
         }
 
-        if(!dataForm.category.trim()){
-            newErrors.category = "La categoria no puede estar vacio"
+        if (!dataForm.category.trim()) {
+            newErrors.category = "La categoría no puede estar vacía";
         }
 
-        if (!dataForm.description.trim()){
-            newErrors.description = "La descripción no puede quedar vacio"
+        if (!dataForm.description.trim()) {
+            newErrors.description = "La descripción no puede quedar vacía";
         }
 
-        if (!productEdit && !image){
-            newErrors.image = "Debe seleccionar una imagen para el nuevo producto"
+        if (!productEdit && !image) {
+            newErrors.image = "Debe seleccionar una imagen para el nuevo producto";
         }
 
-
-        setErrors(newErrors)
+        setErrors(newErrors);
 
         return Object.keys(newErrors).length === 0;
     }
