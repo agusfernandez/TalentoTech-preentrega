@@ -5,6 +5,7 @@ import {SquarePen, Trash} from 'lucide-react';
 import FormProductContainer from './FormProductContainer'
 import Cupon from '../Products/Cupon/Cupon';
 import styles from './styles/Panel.module.css';
+import Modal from './Modal';
 
 const Panel = () => {
 
@@ -13,6 +14,15 @@ const Panel = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [deleteModal, setDeleteModal] = useState({ open: false, product: null });
     const [tabOpen, setTabOpen] = useState('products');
+    const [infoModal, setInfoModal] = useState({isOpen: false, type:"success", title:'' , message:'' });
+
+    const showConfirmedDelete = (type, title, message) => {
+        setInfoModal({ isOpen: true, type, title, message });
+    }
+
+    const closeConfirmedDelete = () => {
+        setInfoModal (prev =>({ ...prev, isOpen:false }));
+    }
 
     useEffect (() => {
         const fetchProducts = async () => {
@@ -42,9 +52,19 @@ const Panel = () => {
             await deleteDoc(doc(db, 'products', product.id));
             setProducts(prev => prev.filter(p => p.id !== product.id));
             closeDeleteModal();
+            showConfirmedDelete (
+                'success',
+                'Producto Eliminado',
+                `${product.title} se ha eliminado con éxito`
+            )
         } catch (error) {
             console.error('Error al eliminar producto:', error);
-            alert('Error al eliminar el producto. Intentá de nuevo.');
+            closeDeleteModal();
+            showConfirmedDelete(
+                'error',
+                'El producto no se pudo eliminar',
+                'No pudimos eliminar el producto.Intenta de nuevo'
+            )
         }
     };
 
@@ -190,6 +210,14 @@ const Panel = () => {
 
 
             </section>
+
+            <Modal 
+                isOpen={infoModal.isOpen}
+                type={infoModal.type}
+                title={infoModal.title}
+                message={infoModal.message}
+                onClose={closeConfirmedDelete}
+            />
         </>
     )
 }
