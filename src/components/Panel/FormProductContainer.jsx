@@ -15,84 +15,143 @@ const emptyForm = {
 
 const FormProductContainer = ({ productEdit, onProductAdded }) => {
 
-    const [datosForm, setDatosForm] = useState(emptyForm);
+    const [dataForm, setDataForm] = useState(emptyForm);
     const [image, setImage] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
 
     // Si viene un producto a editar, pre-llenamos el form
     useEffect(() => {
         if (productEdit) {
-            setDatosForm({
-                title:       productEdit.title       || '',
-                price:       productEdit.price       || '',
-                description: productEdit.description || '',
-                stock:       productEdit.stock       || '',
-                category:    productEdit.category    || '',
-            });
+            setDataForm(productEdit);
         } else {
-            setDatosForm(emptyForm);
+            setDataForm(emptyForm);
         }
-        setImage(null);
+       setErrors({});
     }, [productEdit]);
 
     const manageChange = (e) => {
         const { name, value } = e.target;
-        setDatosForm(prev => ({ ...prev, [name]: value }));
+        setDataForm(prev => ({ ...prev, [name]: value }));
+
+        if (errors[name]){
+            setErrors(prev => ({
+                ...prev, [name]: null
+            }))
+        }
     };
 
     const manageChangeImage = (e) => {
-        setImage(e.target.files[0]);
+        const file = e.target.files[0];
+        setImage(file);
+        if (file && errors.image){
+            setErrors(prev => ({...prev, image:null }));
+        }
     };
+
+    const validateErrors = () => {
+        const newErrors = {};
+
+        if(!dataForm.title.trim()){
+            newErrors.title= "El nombre no puede quedar vacio"
+        }
+
+        if(!dataForm.price()){
+            newErrors.price= "El precio no puede quedar vacio"
+        } else if ( Number(dataForm.price) <= 1){
+            newErrors.price= "El precio debe ser mayor que 1"
+        }
+
+        if (!dataForm.stock === "" || dataForm.stock === undefined){
+            newErrors.stock = "El stock no puede quedar vacio"
+        } else if (Number(dataForm.stock) <= 0) {
+            newErrors.stock = "El stock no puede ser negativo"
+        }
+
+        if(!dataForm.category.trim()){
+            newErrors.category = "La categoria no puede estar vacio"
+        }
+
+        if (!dataForm.description.trim()){
+            newErrors.description = "La descripción no puede quedar vacio"
+        }
+
+        if (!productEdit && !image){
+            newErrors.image = "Debe seleccionar una imagen para el nuevo producto"
+        }
+
+
+        setErrors(newErrors)
+
+        return Object.keys(newErrors).length === 0;
+    }
+
+    const uploadImage = async (file) => {
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        const response = await fetch( `https://api.imgbb.com/1/upload?key=${IMGBB_APIKEY}`,{ 
+            method: "POST", 
+            body: formData 
+        })
+        
+        const dataImg = await response.json();
+        if(!dataImg.success) throw new Error ("Error al subir la imagen");
+        return dataImg.data.url;
+        
+    }
 
     const manageSend = async (e) => {
         e.preventDefault();
+
+        if(!validateErrors()) return;
+
         setLoading(true);
 
         try {
-            let imageUrl = productEdit?.imageProduct || productEdit?.image || '';
+            let imageUrl = dataForm.image || "";
 
             // Solo subimos imagen si se seleccionó una nueva
             if (image) {
-                console.log("Subiendo imagen a Imgbb...");
-                const formData = new FormData();
-                formData.append("image", image);
-
-                const responseImgbb = await fetch(
-                    `https://api.imgbb.com/1/upload?key=${IMGBB_APIKEY}`,
-                    { method: "POST", body: formData }
-                );
-                const dataImgbb = await responseImgbb.json();
-
-                if (!dataImgbb.success) throw new Error("La subida de imagen a Imgbb falló.");
-                imageUrl = dataImgbb.data.url;
-                console.log("Imagen subida:", imageUrl);
+              imageUrl = await uploadImage(image);
             }
 
-            const productData = {
-                title:        datosForm.title,
-                price:        Number(datosForm.price),
-                description:  datosForm.description,
-                stock:        Number(datosForm.stock),
-                category:     datosForm.category,
-                imageProduct: imageUrl,
-            };
+            const dataToSend= {
+                ...dataForm,
+                price: Number(dataForm.price),
+                stock: Number(dataForm.stock),
+                category: dataForm.category.trim().toLowerCase(),
+                image: imageUrl
+            }
 
             if (productEdit) {
                 // ── EDITAR producto existente ──
                 const docRef = doc(db, 'products', productEdit.id);
-                await updateDoc(docRef, productData);
+                await updateDoc(docRef, dataToSend);
+
+                alert("Producto Actualizado con éxito");
                 console.log("Producto actualizado:", productEdit.id);
-                onProductAdded({ id: productEdit.id, ...productData }, true);
-            } else {
-                // ── AGREGAR producto nuevo ──
-                if (!image) {
-                    alert('Por favor, seleccioná una imagen para el nuevo producto.');
-                    setLoading(false);
-                    return;
+                
+                if(onProductAdded) {
+                    onProductAdded({id:onProductAdded.id, ...dataToSend}, true);
                 }
-                const docRef = await addDoc(collection(db, 'products'), productData);
+
+            } else {
+            
+                const docRef = await addDoc(collection(db, 'products'), dataToSend);
+                alert("Producto agregado con éxito");
                 console.log("Producto creado con id:", docRef.id);
-                onProductAdded({ id: docRef.id, ...productData }, false);
+                    
+                if(onProductAdded) {
+                    onProductAdded({id:onProductAdded.id, ...dataToSend}, false);
+                }
+
+                setDataForm(emptyForm)
+
+                setImage(null)
+
+
             }
 
         } catch (error) {
@@ -105,12 +164,13 @@ const FormProductContainer = ({ productEdit, onProductAdded }) => {
 
     return (
         <FormProduct
-            datosForm={datosForm}
+            dataForm={dataForm}
             manageChange={manageChange}
             manageSend={manageSend}
             manageChangeImage={manageChangeImage}
             loading={loading}
             isEditing={!!productEdit}
+            errors={errors}
         />
     );
 };
