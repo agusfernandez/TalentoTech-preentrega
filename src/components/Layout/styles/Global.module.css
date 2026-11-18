@@ -13,6 +13,8 @@
     --color-neutral-900: #0A0907;
     --color-neutral-1000: #000000;
     --color-brand-brown: #715A42;
+    --color-brand-brown-200: #715A42;
+    --color-red-100:#d32f2f;
 
     /* Tipografía base */
     --font-size-xs: 0.6rem;
@@ -32,6 +34,8 @@
     --bg-card: var(--color-neutral-0);
     --bg-subtle: var(--color-neutral-100); /* Reutilizable para footer e inputs */
     --bg-button-primary: var(--color-neutral-1000);
+    --bg-border: var(--color-brand-brown);
+    --bg-toolbar: var(--color-neutral-100);
 
     /* Textos */
     --text-primary: var(--color-neutral-900);

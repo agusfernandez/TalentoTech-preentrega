@@ -37,7 +37,9 @@ const Navbar = () => {
         {/* Links principales */}
         <ul className={styles.navbarLinks}>
           <li><Link to="/" className={styles.link} onClick={closeMenu}>Inicio</Link></li>
-          <li><Link to="/contact" className={styles.link} onClick={closeMenu}>Contacto</Link></li>
+          <li><Link to="/panel">Panel</Link></li>
+
+
 
           {/* Botón hamburguesa */}
           <li>
@@ -86,6 +88,11 @@ const Navbar = () => {
             <li>
               <a onClick={() => handleCategoryNav('/decoración')} className={styles.drawerLink}>
                 Decoración
+              </a>
+            </li>
+            <li>
+              <a onClick={() => handleCategoryNav('/iluminación')} className={styles.drawerLink}>
+                Iluminación
               </a>
             </li>
           </ul>

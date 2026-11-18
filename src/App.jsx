@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import Contact from "./components/Layout/Contact";
 import Categories from "./components/Categories/Categories";
 import Cart from "./components/Cart/Cart";
+import Panel from "./components/Panel/Panel";
 import './components/Layout/styles/Global.module.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/:idCategory" element={<Categories/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/cart" element={<Cart/>}/>
+            <Route path="/panel" element={<Panel/>}/>
         </Route>
     </Routes>
     </>

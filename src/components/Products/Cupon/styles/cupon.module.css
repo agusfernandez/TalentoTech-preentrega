@@ -1,0 +1,163 @@
+@import '../../../Layout/styles/Global.module.css';
+
+/* ── Sección wrapper ── */
+.cuponsSection {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.emptyMsg {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.errorMsg {
+    color: var(--color-red-100);
+    font-size: 0.9rem;
+}
+
+/* ── Grid de cupones ── */
+.cuponsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1rem;
+}
+
+/* ── Card estilo ticket ── */
+.cuponCard {
+    display: flex;
+    align-items: stretch;
+    background: var(--bg-card);
+    border: 1px solid var(--color-neutral-100);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s, transform 0.2s;
+
+    &:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+}
+
+/* ── Lado izquierdo: porcentaje ── */
+.discountSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-neutral-900);
+    color: #fff;
+    padding: 1.25rem 1.5rem;
+    min-width: 90px;
+    gap: 2px;
+}
+
+.discountValue {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.discountLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    opacity: 0.75;
+    font-weight: 500;
+}
+
+/* ── Separador dentado ── */
+.divider {
+    width: 1px;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 6px,
+        var(--color-neutral-100) 6px,
+        var(--color-neutral-100) 12px
+    );
+    flex-shrink: 0;
+}
+
+/* ── Lado derecho: info ── */
+.infoSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 1rem 1.25rem;
+    flex: 1;
+}
+
+.cuponTitle {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+}
+
+.cuponDescription {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ── Fila del código + botón copiar ── */
+.codeRow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+.cuponCode {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: var(--bg-subtle);
+    color: var(--color-brand-brown);
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px dashed var(--color-brand-brown);
+}
+
+.copyBtn {
+    font-size: 0.75rem !important;
+    padding: 3px 10px !important;
+    height: auto !important;
+    background: transparent !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid var(--color-neutral-500) !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    text-transform: none !important;
+    transition: all 0.2s;
+
+    &:hover {
+        background: var(--color-neutral-900) !important;
+        color: #fff !important;
+        border-color: var(--color-neutral-900) !important;
+    }
+}
+
+.copied {
+    background: #2e7d32 !important;
+    color: #fff !important;
+    border-color: #2e7d32 !important;
+}
