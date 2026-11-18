@@ -43,6 +43,7 @@ const Categories = () => {
         return <p>Error: {error}</p>;
     }
 
+
     return (
 
         <>
