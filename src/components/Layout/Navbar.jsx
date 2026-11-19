@@ -3,8 +3,10 @@ import styles from "./styles/Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
   const { itemsInCart } = useCart();
   const totalItems = itemsInCart();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,8 +39,30 @@ const Navbar = () => {
         {/* Links principales */}
         <ul className={styles.navbarLinks}>
           <li><Link to="/" className={styles.link} onClick={closeMenu}>Inicio</Link></li>
-          <li><Link to="/panel">Panel</Link></li>
+          <div>
+              <ul>
+                {user ? (
+                  <>
+                    {user.rol === "admin" && (
 
+                        <li>
+
+                          <Link to="/panel">Panel</Link>
+                        </li>
+                    )}
+
+                    <span>Hola, {user.name}</span>
+                    <button onClick={logout}>Cerrar Sesión</button>
+                  </>
+                  
+                  ) : (
+                    <li>
+                      <Link to="/login">Login</Link>
+                    </li>
+                  )}
+                
+              </ul>  
+          </div>        
 
 
           {/* Botón hamburguesa */}

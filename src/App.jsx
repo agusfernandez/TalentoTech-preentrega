@@ -8,6 +8,9 @@ import Contact from "./components/Layout/Contact";
 import Categories from "./components/Categories/Categories";
 import Cart from "./components/Cart/Cart";
 import Panel from "./components/Panel/Panel";
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import RouteProtected from './components/Auth/RouteProtected';
 import './components/Layout/styles/Global.module.css'
 
 function App() {
@@ -24,7 +27,13 @@ function App() {
             <Route path="/:idCategory" element={<Categories/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/cart" element={<Cart/>}/>
-            <Route path="/panel" element={<Panel/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/panel" element={ 
+                <RouteProtected allowedUsers={['admin']}>
+                  <Panel/>
+                </RouteProtected>
+            }/>
         </Route>
     </Routes>
     </>
