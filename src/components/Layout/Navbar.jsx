@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from "./styles/Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, User } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from "../../context/AuthContext";
+
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -36,90 +37,92 @@ const Navbar = () => {
           <Link to="/" className={styles.logo}>Nórdico</Link>
         </div>
 
-        {/* Links principales */}
-        <ul className={styles.navbarLinks}>
-          <li><Link to="/" className={styles.link} onClick={closeMenu}>Inicio</Link></li>
-          <div>
-              <ul>
-                {user ? (
-                  <>
-                    {user.rol === "admin" && (
+        <div className={styles.navbarColumnRight}>
+          {/* Links principales */}
+          <div className={styles.navbarLinks}>
+            <li><Link to="/" className={styles.link} onClick={closeMenu}>Inicio</Link></li>
+            <div className={styles.userLink}>
+                <ul>
+                  {user ? (
+                    <>
+                      {user.rol === "admin" && (
 
-                        <li>
+                          <li>
 
-                          <Link to="/panel">Panel</Link>
-                        </li>
+                            <Link to="/panel">Panel</Link>
+                          </li>
+                      )}
+                      <User strokeWidth={1.2} />
+                      <span>Hola, {user.name}</span>
+                      <button onClick={logout}>Cerrar Sesión</button>
+                    </>
+                    
+                    ) : (
+                      <li>
+                        <Link to="/login"> <User strokeWidth={1.2} /></Link>
+                      </li>
                     )}
-
-                    <span>Hola, {user.name}</span>
-                    <button onClick={logout}>Cerrar Sesión</button>
-                  </>
                   
-                  ) : (
-                    <li>
-                      <Link to="/login">Login</Link>
-                    </li>
-                  )}
-                
-              </ul>  
-          </div>        
+                </ul>  
+            </div>        
 
 
-          {/* Botón hamburguesa */}
-          <li>
-            <button
-              className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
-              onClick={toggleMenu}
-              aria-label="Abrir menú de categorías"
-              aria-expanded={menuOpen}
-              aria-controls="menu-categorias"
-            >
-              <span className={styles.bar}></span>
-              <span className={styles.bar}></span>
-              <span className={styles.bar}></span>
-            </button>
-          </li>
+            {/* Botón hamburguesa */}
+            <li>
+              <button
+                className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
+                onClick={toggleMenu}
+                aria-label="Abrir menú de categorías"
+                aria-expanded={menuOpen}
+                aria-controls="menu-categorias"
+              >
+                <span className={styles.bar}></span>
+                <span className={styles.bar}></span>
+                <span className={styles.bar}></span>
+              </button>
+            </li>
 
-          {/* Carrito */}
-          <li className={styles.cartLink}>
-            <Link to="/cart" onClick={closeMenu}>
-              <ShoppingCart strokeWidth={1} />
-              {totalItems > 0 && <span className={styles.shoppingCount}>{totalItems}</span>}
-            </Link>
-          </li>
-        </ul>
-
-        {/* Drawer: AHORA DENTRO DEL NAV */}
-        <div
-          id="menu-categorias"
-          className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}
-        >
-          <div className={styles.drawerHeader}>
-            <span className={styles.drawerTitle}>Categorías</span>
-            <button className={styles.closeBtn} onClick={closeMenu} aria-label="Cerrar menú">✕</button>
+            {/* Carrito */}
+            <li className={styles.cartLink}>
+              <Link to="/cart" onClick={closeMenu}>
+                <ShoppingCart strokeWidth={1} />
+                {totalItems > 0 && <span className={styles.shoppingCount}>{totalItems}</span>}
+              </Link>
+            </li>
           </div>
-          <ul className={styles.drawerLinks}>
-            <li>
-              <a onClick={() => handleCategoryNav('/new')} className={styles.drawerLink}>
-                Novedades
-              </a>
-            </li>
-            <li>
-              <a onClick={() => handleCategoryNav('/products')} className={styles.drawerLink}>
-                Productos
-              </a>
-            </li>
-            <li>
-              <a onClick={() => handleCategoryNav('/decoración')} className={styles.drawerLink}>
-                Decoración
-              </a>
-            </li>
-            <li>
-              <a onClick={() => handleCategoryNav('/iluminación')} className={styles.drawerLink}>
-                Iluminación
-              </a>
-            </li>
-          </ul>
+
+          {/* Drawer: AHORA DENTRO DEL NAV */}
+          <div
+            id="menu-categorias"
+            className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}
+          >
+            <div className={styles.drawerHeader}>
+              <span className={styles.drawerTitle}>Categorías</span>
+              <button className={styles.closeBtn} onClick={closeMenu} aria-label="Cerrar menú">✕</button>
+            </div>
+            <ul className={styles.drawerLinks}>
+              <li>
+                <a onClick={() => handleCategoryNav('/new')} className={styles.drawerLink}>
+                  Novedades
+                </a>
+              </li>
+              <li>
+                <a onClick={() => handleCategoryNav('/products')} className={styles.drawerLink}>
+                  Productos
+                </a>
+              </li>
+              <li>
+                <a onClick={() => handleCategoryNav('/decoración')} className={styles.drawerLink}>
+                  Decoración
+                </a>
+              </li>
+              <li>
+                <a onClick={() => handleCategoryNav('/iluminación')} className={styles.drawerLink}>
+                  Iluminación
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
 
