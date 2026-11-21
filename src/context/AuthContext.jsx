@@ -43,10 +43,10 @@ export const AuthProvider = ({children}) => {
      useEffect (() => {
         //verify if user es logged or not
         const unsubscribe = onAuthStateChanged (auth , async (currentUser) =>{
-            if(currentUser){
-                const userDocRef = db(db, 'users', currentUser.uid);
+            if(currentUser){    
+                const userDocRef = doc(db, 'users', currentUser.uid);
                 const userDocSnap = await getDoc(userDocRef) 
-                if (userDocSnap.exists() && userDocSnap.data() === "admin") {
+                if (userDocSnap.exists() && userDocSnap.data().rol === "admin") {
                     setUser({ ...currentUser, rol:"admin"});
                 } else {
                     setUser({ ...currentUser, rol:"user"});
