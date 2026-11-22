@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from "./styles/Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart, User } from 'lucide-react';
+import { ShoppingCart, User, ChevronDown } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from "../../context/AuthContext";
 
@@ -11,15 +11,26 @@ const Navbar = () => {
   const { itemsInCart } = useCart();
   const totalItems = itemsInCart();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const accountRef = useRef(null);
+
   const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
   const closeMenu = () => setMenuOpen(false);
 
+  const toggleAccount = () => setAccountOpen(prev => !prev);
+  const closeAccount = () => setAccountOpen(false);
+
   const handleCategoryNav = (path) => {
     closeMenu();
     navigate(path);
   };
+
+  const handleLogout = () =>{
+    closeAccount();
+    logout();
+  }
 
   // Cerrar con la tecla Escape
   useEffect(() => {
@@ -28,6 +39,27 @@ const Navbar = () => {
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if(!accountOpen) return;
+    const onKeyDown = (e) => e.key === "Escape" && closeAccount();
+    const onClickOutside = (e) => {
+      if(accountRef.current && !accountRef.current.contains(e.target)) closeAccount()
+
+    }
+
+    document.addEventListener('keydown',onKeyDown),
+    document.addEventListener('mousedown', onClickOutside);
+    return () => {
+      document.removeEventListener('keydown',onKeyDown),
+      document.removeEventListener('mousedown', onClickOutside);
+    }
+
+
+  }), [accountOpen]
+
+   const linkClass = ({ isActive }) =>
+    `${styles.link} ${isActive ? styles.active : ''}`;
 
   return (
     <>
@@ -40,30 +72,60 @@ const Navbar = () => {
         <div className={styles.navbarColumnRight}>
           {/* Links principales */}
           <div className={styles.navbarLinks}>
-            <li><Link to="/" className={styles.link} onClick={closeMenu}>Inicio</Link></li>
+            <li><Link to="/" end className={linkClass} onClick={closeMenu}>Inicio</Link></li>
             <div className={styles.userLink}>
-                <ul>
+                  {/* Cuenta y acciones */}
+                <ul className={styles.navbarActions}>
                   {user ? (
-                    <>
-                      {user.rol === "admin" && (
+                    <li className={styles.account} ref={accountRef}>
+                      <button
+                        type="button"
+                        className={styles.accountTrigger}
+                        onClick={toggleAccount}
+                        aria-haspopup="menu"
+                        aria-expanded={accountOpen}
+                        aria-controls="menu-cuenta"
+                      >
+                        <User strokeWidth={1.2} size={22} />
+                        <span className={styles.greeting}>Hola, {user.email}</span>
+                        <ChevronDown
+                          size={16}
+                          strokeWidth={1.5}
+                          className={`${styles.chevron} ${accountOpen ? styles.chevronOpen : ''}`}
+                        />
+                      </button>
 
-                          <li>
-
-                            <Link to="/panel">Panel</Link>
-                          </li>
+                      {accountOpen && (
+                        <div id="menu-cuenta" className={styles.accountMenu} role="menu">
+                          {user.rol === "admin" && (
+                            <Link
+                              to="/panel"
+                              role="menuitem"
+                              className={styles.accountItem}
+                              onClick={closeAccount}
+                            >
+                              Panel
+                            </Link>
+                          )}
+                          <button
+                            type="button"
+                            role="menuitem"
+                            className={`${styles.accountItem} ${styles.accountItemDanger}`}
+                            onClick={handleLogout}
+                          >
+                            Cerrar sesión
+                          </button>
+                        </div>
                       )}
-                      <User strokeWidth={1.2} />
-                      <span>Hola, {user.name}</span>
-                      <button onClick={logout}>Cerrar Sesión</button>
-                    </>
-                    
-                    ) : (
-                      <li>
-                        <Link to="/login"> <User strokeWidth={1.2} /></Link>
-                      </li>
-                    )}
-                  
-                </ul>  
+                    </li>
+                  ) : (
+                    <li>
+                      <Link to="/login" aria-label="Iniciar sesión">
+                        <User strokeWidth={1.2} />
+                      </Link>
+                    </li>
+                  )}
+                </ul>
             </div>        
 
 

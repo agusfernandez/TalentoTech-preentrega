@@ -1,0 +1,7 @@
+@import '../../Layout/styles/Global.module.css';
+
+.formRegister {
+    width: 50%;
+    margin:auto;
+
+}

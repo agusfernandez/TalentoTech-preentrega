@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { db } from '../../firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Modal from '../Panel/Modal';
 import styles from './styles/Register.module.css';
@@ -69,27 +69,32 @@ const Register = () => {
     return (
 
         <>
-            <form onSubmit={manageRegister}>
-                <div className={styles.formGroup}>
-                    <label>Nombre</label>
-                    <input type="text" placeholder="Ingrese su nombre" value={name} onChange={(event)=> setName(event.target.value)} required></input>
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Apellido</label>
-                    <input type="text" placeholder="Ingrese su apellido" value={surname} onChange={(event)=> setSurname(event.target.value)} required></input>
-                </div>
-                <div className={styles.formGroup}>
-                    <label>Email</label>
-                    <input type="email" placeholder="Ingrese su email" value={email} onChange={(event)=> setEmail(event.target.value)} required></input>
-                </div>
-                          <div className={styles.formGroup}>
-                    <label>Password</label>
-                    <input type="password"  placeholder="Ingrese su contraseña. Minimo de 6 caracteres" value={password} onChange={(event)=> setPassword(event.target.value)} required></input>
-                </div>
-                {error && <p className={styles.errorMessage}>{error}</p>}
-                <button type="submit">Enviar</button>
+            <section className={`${styles.formRegister} ${styles.mainContainer}`}>
+                <h3>Por favor, registrese</h3>
+                <form onSubmit={manageRegister} className={styles.form}>
+                    <div className={styles.formGroup}>
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Ingrese su nombre" value={name} onChange={(event)=> setName(event.target.value)} required></input>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Apellido</label>
+                        <input type="text" placeholder="Ingrese su apellido" value={surname} onChange={(event)=> setSurname(event.target.value)} required></input>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Email</label>
+                        <input type="email" placeholder="Ingrese su email" value={email} onChange={(event)=> setEmail(event.target.value)} required></input>
+                    </div>
+                            <div className={styles.formGroup}>
+                        <label>Password</label>
+                        <input type="password"  placeholder="Ingrese su contraseña. Minimo de 6 caracteres" value={password} onChange={(event)=> setPassword(event.target.value)} required></input>
+                    </div>
+                    {error && <p className={styles.errorMessage}>{error}</p>}
+                    <button type="submit" className={styles.submitButton}>Enviar</button>
+                    <span className={styles.legendLink}>¿Ya esta registrado? <Link to="/login">Log in</Link></span>
 
-            </form>
+                </form>
+
+            </section>
 
 
             <Modal
