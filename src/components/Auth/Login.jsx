@@ -45,12 +45,21 @@ const Login = () => {
 
     return (
         <>  
-            <section className={styles.formlogin}>
-                <form onSubmit={manageLogin}>
-                    <input type="email" placeholder="ingrese su correo electrónico" value={email} onChange={(event) => setEmail(event.target.value)}></input>
-                    <input type="password" placeholder="ingrese su contraseña" value={password} onChange={(event) => setPassword(event.target.value)}></input>
-                    <button type="submit">Enviar</button>
-                    <span>¿No esta registrado?<Link to="/register">Registrese</Link></span>
+            <section className={`${styles.formLogin} ${styles.mainContainer}`}>
+                <h3>Por favor, inicie sesión</h3>
+                <form onSubmit={manageLogin} className={styles.form}>
+                    <div className={styles.formGroup}>
+                        <label>Ingrese su email</label>
+                        <input type="email" placeholder="ingrese su correo electrónico" value={email} onChange={(event) => setEmail(event.target.value)}></input>
+                        </div>
+
+                    <div className={styles.formGroup}>
+                        <label>Ingrese su contraseña</label>
+                        <input type="password" placeholder="ingrese su contraseña" value={password} onChange={(event) => setPassword(event.target.value)}></input>
+
+                    </div>
+                    <button type="submit" className={styles.submitButton}>Enviar</button>
+                    <span className={styles.legendLink}>¿No esta registrado? <Link to="/register">Registrese</Link></span>
                 </form>
             </section>
             <Modal 

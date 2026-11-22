@@ -16,21 +16,120 @@
 
     .navbarColumnRight {
         display: flex;
-        flex-direction: row;
-        justify-content: baseline;
-         .userLink {
-            ul {
-                text-decoration: none;
-                padding: 0;
-                list-style-type: none;
+        align-items: center;
+        gap: 32px;
 
-                li {
-                     &::marker {
-                        display:none;
-                        opacity: 0;
+        /* ── Links principales ── */
+        .navbarLinks {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            .link {
+                font-size: 16px;
+                color: inherit;
+                text-decoration: none;
+                padding-bottom: 2px;
+                border-bottom: 1.5px solid transparent;
+
+            }
+
+
+            .active {
+                font-weight: 500;
+                border-bottom-color: currentColor;
+            }
+
+
+            .navbarActions {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                .account {
+                    position: relative;
+                    .accountTrigger {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        background: none;
+                        border: none;
+                        padding: 4px 0;
+                        font: inherit;
+                        font-size: 14px;
+                        color: inherit;
+                        cursor: pointer;
                     }
 
-                
+                    .greeting {
+                        max-width: 220px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+
+                        .chevron {
+                        transition: transform 0.2s ease;
+                        }
+
+                        .chevronOpen {
+                        transform: rotate(180deg);
+                    }
+
+                    /* Menú desplegable */
+                        .accountMenu {
+                        position: absolute;
+                        right: 0;
+                        top: calc(100% + 8px);
+                        min-width: 200px;
+                        display: flex;
+                        flex-direction: column;
+                        padding: 6px;
+                        background: #fff;
+                        border: 1px solid rgba(0, 0, 0, 0.1);
+                        border-radius: 10px;
+                        z-index: 20;
+                        }
+
+                        .accountItem {
+                        display: block;
+                        width: 100%;
+                        padding: 10px 12px;
+                        background: none;
+                        border: none;
+                        border-radius: 6px;
+                        font: inherit;
+                        font-size: 14px;
+                        text-align: left;
+                        color: inherit;
+                        text-decoration: none;
+                        cursor: pointer;
+                        }
+
+                        .accountItem:hover,
+                        .accountItem:focus-visible {
+                        background: rgba(0, 0, 0, 0.05);
+                        }
+
+                        .accountItemDanger {
+                        color: #b42318;
+                        }
+
+                        /* En pantallas chicas queda solo el ícono de usuario */
+                        @media (max-width: 640px) {
+                        .greeting {
+                            display: none;
+                        }
+
+                        .navbarColumnRight {
+                            gap: 16px;
+                        }
+                        }
                 }
             }
         }
@@ -46,28 +145,8 @@
 
 
 
-/* ── Links principales ── */
-.navbarLinks {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    color: var (--text-primary);
-}
 
-.navbarLinks li a,
-.link {
-    text-decoration: none;
-     color: var (--text-primary);
-    transition: color 0.3s ease;
-}
 
-.navbarLinks li a:hover,
-.link:hover {
-    color: #000;
-}
 
 /* ── Carrito ── */
 .cartLink {

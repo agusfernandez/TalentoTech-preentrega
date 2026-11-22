@@ -3,7 +3,7 @@ import styles from "./styles/FormProduct.module.css";
 const FormProduct = ({ manageChange, manageSend, manageChangeImage, dataForm, loading, isEditing, errors={} }) => {
 
     return (
-        <form onSubmit={manageSend} className={styles.formulario}>
+        <form onSubmit={manageSend} className={styles.form}>
 
             <div className={styles.formGroup}>
                 <label htmlFor="title">Nombre:</label>

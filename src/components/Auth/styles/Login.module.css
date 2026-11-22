@@ -1,0 +1,8 @@
+@import '../../Layout/styles/Global.module.css';
+
+.formLogin {
+    width: 50%;
+    margin:auto;
+
+}
+
