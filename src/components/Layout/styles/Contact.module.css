@@ -43,24 +43,12 @@
                     gap: 10px;
 
                     .employeeImage {
-                        display: block;
-                        background-size: cover;
-                        background-position: center;
-                        background-repeat: no-repeat;
+                        display: flex;
+                       
                         width: 60px;
                         height: 60px;
                     }
-                    .employeeImageOne {
-                        background-image: url(../src/assets/Avatar/Mateo_Valls.png);
-                    }
-
-                    .employeeImageTwo {
-                        background-image: url(../src/assets/Avatar/Sofia_Lindqvist.png);
-                    }
-
-                    .employeeImageThree {
-                        background-image: url(../src/assets/Avatar/Clara_Menendez.png);
-                    }
+               
 
 
 

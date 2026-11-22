@@ -1,4 +1,7 @@
 import styles from '../styles/InformationSection.module.css';
+import treeIcon from "../../../assets/Icons/tree.svg";
+import handIcon from "../../../assets/Icons/hand.svg";
+import packageIcon from "../../../assets/Icons/package.svg";
 
 const InformationSection = () => {
 
@@ -9,7 +12,7 @@ const InformationSection = () => {
                 <div className={styles.sectionInfoCard}>
                     <div className={styles.sectionsCard}>
                             <div>
-                                <div className={styles.iconCardOne}></div>
+                                <div className={styles.iconCardOne}>  <img src={treeIcon} alt="" width={15} height={15} /></div>
                                 <span>01 / TRAZABILIDAD</span>
                                 <h4>Maderas Certificadas FSC</h4>
                                 <p>Troncos seleccionados de robledales sostenibles europeos. Cada veta cuenta la historia pausada de un crecimiento de más de ochenta inviernos.</p>
@@ -18,7 +21,7 @@ const InformationSection = () => {
     
                         <div className={styles.sectionsCard}>
                             <div>
-                                <div className={styles.iconCardTwo}></div>
+                                <div className={styles.iconCardTwo}><img src={handIcon} alt="" width={15} height={15} /></div>
                                  <span>02 / MAESTRÍA</span>
                                 <h4>Ebanistería Lenta y Manual</h4>
                                 <p>Ensambles japoneses tradicionales de espiga oculta sin tornillería sintética visible. Aceites naturales aplicados con paño de algodón puro.</p>
@@ -27,7 +30,7 @@ const InformationSection = () => {
                
                         <div className={styles.sectionsCard}>
                              <div>
-                                <div className={styles.iconCardThree}></div>
+                                <div className={styles.iconCardThree}><img src={packageIcon} alt="" width={15} height={15} /></div>
                                  <span>03 / REVERENCIA</span>
                                 <h4>Entrega con Montaje Cuidadoso</h4>
                                 <p>Servicio propio de guante blanco.Calibramos y nivelamos cada objeto en su estancia final con fundas protectoras reutilizables de cáñamo.</p>

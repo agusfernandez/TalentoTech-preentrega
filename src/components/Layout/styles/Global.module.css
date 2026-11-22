@@ -95,8 +95,8 @@ a {
     &::placeholder {
         font-size: var(--text-size-body);
     }
-    &::focus,
-    &::focus-visible {
+    &:focus,
+    &:focus-visible {
         outline: 1px solid var(--text-size-body);
         outline-offset: 2px;
     }

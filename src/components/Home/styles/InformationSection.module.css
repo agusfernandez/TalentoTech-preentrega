@@ -28,24 +28,18 @@
                 .iconCardOne,
                 .iconCardTwo,
                 .iconCardThree {
-                    background-color:#EFEEEB;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 10px;
-                    background-position: center;
-                    background-repeat: no-repeat;
+                      background-color: #EFEEEB;
+                      width: 10px;
+                      height: 10px;
+                      width: 10px;
+                      border-radius: 10%;
+                      display:flex;
+                      align-items: center;  
+                       
                 }
-                .iconCardOne {
-                    background-image: url(../src/assets/Icons/tree.svg);
-                }
+             
 
-                .iconCardTwo {
-                    background-image: url(../src/assets/Icons/hand.svg);
-                }
-
-                .iconCardThree {
-                    background-image: url(../src/assets/Icons/package.svg);
-                }
+    
 
                 span {
                     color: var(--text-accent);
