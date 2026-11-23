@@ -1,4 +1,6 @@
 import styles from "../styles/Banner.module.css";
+import { Link } from "react-router-dom";
+
 
 const Banner = () => {
     return (
@@ -10,7 +12,7 @@ const Banner = () => {
                         <p className={styles.homeBannerDescription}>
                             Descubre nuestra colección de productos de alta calidad y diseño escandinavo.
                         </p>
-                        <a  className={styles.homeBannerButton}>Explorar Productos</a>
+                        <Link to="/products" className={styles.homeBannerButton}>Explorar Productos</Link>
                     </div>
                 </div>
             </section>
