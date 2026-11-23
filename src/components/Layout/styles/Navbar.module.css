@@ -7,6 +7,8 @@
     padding: 1.8rem 2.5rem;
     position: relative;
     z-index: 150;
+    flex-wrap: wrap;
+    gap: 10px;
     .logo {
         font-size: 1.5rem;
         font-weight: bold;
@@ -14,129 +16,287 @@
         text-decoration: none;
     }
 
-    .navbarColumnRight {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-
-        /* ── Links principales ── */
-        .navbarLinks {
+    .navbarColumnCenter {
+            flex: 1;
             display: flex;
-            align-items: center;
-            gap: 24px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+            justify-content: right;
+            padding: 0 24px;
 
-            .link {
-                font-size: 16px;
-                color: inherit;
-                text-decoration: none;
-                padding-bottom: 2px;
-                border-bottom: 1.5px solid transparent;
-
+            @media (max-width: 900px) {
+                order: 3;
+                flex-basis: 100%;
+                padding: 12px 0 0;
+                justify-content: center;
             }
 
-
-            .active {
-                font-weight: 500;
-                border-bottom-color: currentColor;
-            }
-
-
-            .navbarActions {
+            .searchForm {
+                position: relative;
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                width: 100%;
+                max-width: 420px;
+
+                @media (max-width:900px){
+                    max-width: 100%;
+                }
+                .inputWrapper {
+                    width: 100%;
+                    height: 40px;
+                    padding: 0 10px 0 10px;
+                    font: inherit;
+                    font-size: 14px;
+                    color: #000;
+                    background-color: var(--bg-subtle);
+                    border: 1px solid #CEC5BD;
+                    border-radius: 10px;
+                    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    &:focus {
+                        outline: none;
+                        background-color: #fff;
+                        border-color: var(--text-accent);
+                        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+                    }
+
+                    &::placeholder {
+                        color: var(--text-muted);
+                    }
+
+                    .searchInput {
+                        &::-webkit-search-cancel-button,
+                        ::-webkit-search-decoration  {
+                            -webkit-appearance: none;
+                            appearance: none;
+                        }
+                    }
+                }
+
+                .searchClear {
+                    position:absolute;
+                    right: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 26px;
+                    height: 26px;
+                    padding: 0;
+                    cursor: pointer;
+                }
+
+        
+
+                .searchIcon {
+                    position: absolute;
+                    left: 14px;
+                    color: #6b6b6b;
+                    pointer-events: none;
+                }
+            }
+
+
+
+        }
+
+        .navbarColumnRight {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+
+            /* ── Links principales ── */
+            .navbarLinks {
+                display: flex;
+                align-items: center;
+                gap: 24px;
                 list-style: none;
                 margin: 0;
                 padding: 0;
-                .account {
-                    position: relative;
-                    .accountTrigger {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        background: none;
-                        border: none;
-                        padding: 4px 0;
-                        font: inherit;
-                        font-size: 14px;
-                        color: inherit;
-                        cursor: pointer;
-                    }
 
-                    .greeting {
-                        max-width: 220px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                    }
+                .link {
+                    font-size: 16px;
+                    color: inherit;
+                    text-decoration: none;
+                    padding-bottom: 2px;
+                    border-bottom: 1.5px solid transparent;
 
-                        .chevron {
-                        transition: transform 0.2s ease;
-                        }
+                }
 
-                        .chevronOpen {
-                        transform: rotate(180deg);
-                    }
 
-                    /* Menú desplegable */
-                        .accountMenu {
-                            position: absolute;
-                            right: 0;
-                            top: calc(100% + 8px);
-                            min-width: 200px;
+                .active {
+                    font-weight: 500;
+                    border-bottom-color: currentColor;
+                }
+
+
+                .navbarActions {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    .account {
+                        position: relative;
+                        .accountTrigger {
                             display: flex;
-                            flex-direction: column;
-                            padding: 6px;
-                            background: #fff;
-                            border: 1px solid rgba(0, 0, 0, 0.1);
-                            border-radius: 10px;
-                            z-index: 20;
-                        }
-
-                        .accountItem {
-                            display: block;
-                            width: 100%;
-                            padding: 10px ;
+                            align-items: center;
+                            gap: 8px;
                             background: none;
                             border: none;
-                            border-radius: 6px;
+                            padding: 4px 0;
                             font: inherit;
                             font-size: 14px;
-                            text-align: left;
                             color: inherit;
-                            text-decoration: none;
                             cursor: pointer;
-                            height: auto;
                         }
+
+                        .greeting {
+                            max-width: 220px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+
+                            .chevron {
+                            transition: transform 0.2s ease;
+                            }
+
+                            .chevronOpen {
+                            transform: rotate(180deg);
+                        }
+
+                        /* Menú desplegable */
+                            .accountMenu {
+                                position: absolute;
+                                right: 0;
+                                top: calc(100% + 8px);
+                                min-width: 200px;
+                                display: flex;
+                                flex-direction: column;
+                                padding: 6px;
+                                background: #fff;
+                                border: 1px solid rgba(0, 0, 0, 0.1);
+                                border-radius: 10px;
+                                z-index: 20;
+                            }
+
+                            .accountItem {
+                                display: block;
+                                width: 100%;
+                                padding: 10px ;
+                                background: none;
+                                border: none;
+                                border-radius: 6px;
+                                font: inherit;
+                                font-size: 14px;
+                                text-align: left;
+                                color: inherit;
+                                text-decoration: none;
+                                cursor: pointer;
+                                height: auto;
+                            }
+
+                        
+
+                            .accountItemDanger {
+                            color: #b42318;
+                            }
+
+                            /* En pantallas chicas queda solo el ícono de usuario */
+                            @media (max-width: 640px) {
+                            .greeting {
+                                display: none;
+                            }
+
+                            .navbarColumnRight {
+                                gap: 16px;
+                            }
+                            }
+                    }
+                }
+
+                /* ── Botón hamburguesa ── */
+                .hamburger {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 5px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 4px;
+                    width: 32px;
+                    height: 32px;
+
+                    .bar {
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        background-color: #333;
+                        border-radius: 2px;
+                        transition: transform 0.3s ease, opacity 0.3s ease;
+                        transform-origin: center;
+                    }
 
                     
+                }
 
-                        .accountItemDanger {
-                        color: #b42318;
-                        }
+                /* Animación a X cuando está abierto */
+                .open .bar:nth-child(1) {
+                    transform: translateY(7px) rotate(45deg);
+                }
+                .open .bar:nth-child(2) {
+                    opacity: 0;
+                    transform: scaleX(0);
+                }
+                .open .bar:nth-child(3) {
+                    transform: translateY(-7px) rotate(-45deg);
+                }
 
-                        /* En pantallas chicas queda solo el ícono de usuario */
-                        @media (max-width: 640px) {
-                        .greeting {
-                            display: none;
-                        }
+            }
 
-                        .navbarColumnRight {
-                            gap: 16px;
-                        }
-                        }
+
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+
+            /* ── Carrito ── */
+            .cartLink {
+                position: relative;
+
+                a {
+                    display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: var (--text-primary);
+                        button {
+                            text-transform: none;
+                    }
+                }
+
+                .shoppingCount {
+                    background-color: var(--text-muted, #555);
+                    color: #fff;
+                    border-radius: 5px;
+                    padding: 2px;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 0.7rem;
+                    position: absolute;
+                    top: -15px;
+                    right: -10px;
                 }
             }
+
         }
 
-         svg {
-            width: 30px;
-            height: 30px;
-         }
-    }
 
    
 }
@@ -144,139 +304,131 @@
 
 
 
-
-
-/* ── Carrito ── */
-.cartLink {
-    position: relative;
-}
-
-.cartLink a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var (--text-primary);
-    button {
-        text-transform: none;
-    }
-}
-
-.shoppingCount {
-    background-color: var(--text-muted, #555);
-    color: #fff;
-    border-radius: 5px;
-    padding: 2px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    position: absolute;
-    top: -15px;
-    right: -10px;
-}
-
-/* ── Botón hamburguesa ── */
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    width: 32px;
-    height: 32px;
-}
-
-.bar {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #333;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center;
-}
-
-/* Animación a X cuando está abierto */
-.open .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-.open .bar:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-.open .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-
-/* ── Overlay oscuro ── */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    z-index: 100;
-    animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
 /* ── Estilos compartidos del drawer ── */
 .drawer {
     background: var(--bg-page);
     z-index: 200;
     visibility: hidden; 
-}
 
-.drawerOpen {
-    visibility: visible;
-    width: 100%;
-    left: 0;
-    height: 300px;
-}
+    &.drawerOpen {
+        visibility: visible;
+        width: 100%;
+        left: 0;
+        height: 300px;
+        @media (min-width: 769px){
+            max-height: 400px;    /* mayor al alto real del contenido */
+            opacity: 1;
+            pointer-events: auto;
+            transition:
+                max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                visibility 0s;
+        }
 
-.drawerLinks {
-    list-style: none;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
+        @media (max-width: 769px) {
+            transform: translateX(0);
+            transition:
+                transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s;
+        }
 
-.drawerLink {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    color: #333;
-    cursor: pointer;
-    border-bottom: 1px solid #f5f5f5;
-    transition: background 0.2s, padding-left 0.2s;
-}
-
-.drawerLink:hover {
-    background: #f9f9f9;
-    padding-left: 2rem;
-    color: #000;
-}
-
-/* ══════════════════════════════════════
-   DESKTOP (≥ 769px)
-   Dropdown: se despliega de arriba hacia abajo
-   ══════════════════════════════════════ */
-@media (min-width: 769px) {
-    .overlay {
-        background: transparent; /* solo sirve para cerrar al hacer click afuera */
-        animation: none;
     }
 
-    .drawer {
+    .drawerHeader {
+       
+        @media (min-width: 769px){
+            display:none;
+        }
+
+        @media (max-width: 768px){
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .drawerTitle {
+            @media (max-width: 768px){
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #333;
+                letter-spacing: 0.03em;
+            }
+        }
+
+        .closeBtn {
+            @media (max-width: 768px) {
+                background: none;
+                border: none;
+                font-size: 1.1rem;
+                color: #666;
+                cursor: pointer;
+                padding: 4px 8px;
+                border-radius: 4px;
+                transition: background 0.2s;
+
+                &:hover {
+                    background: #f0f0f0;
+                    color: #333;
+                }
+            }      
+        }
+    }
+
+    .drawerLinks {
+        list-style: none;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        .drawerLink {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            border-bottom: 1px solid #f5f5f5;
+            transition: background 0.2s, padding-left 0.2s;
+            &:hover {
+                background: #f9f9f9;
+                padding-left: 2rem;
+                color: #000;
+            }
+
+
+            @media (min-width: 769px) {
+                padding: 0.85rem 1.5rem;
+                font-size: 1rem;
+                white-space: nowrap;
+            }
+
+            &:last-child {
+                 @media (min-width: 769px) {
+                    border-bottom: none;
+                 }
+            }
+
+            @media (max-width: 768px) {
+                padding: 1.2rem 1.5rem;
+                font-size: 1.1rem;
+            }
+
+    
+            
+        }
+
+        @media (min-width: 769px) {
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            padding: 1rem 0;
+        }
+    }
+
+     @media (min-width: 769px)  {
         position: absolute;
         top: 100%;            /* justo debajo del nav */
         right: 2.5rem;        /* alineado con el padding del nav */
@@ -294,41 +446,7 @@
             visibility 0s linear 0.35s;
     }
 
-    .drawerOpen {
-        max-height: 400px;    /* mayor al alto real del contenido */
-        opacity: 1;
-        pointer-events: auto;
-        transition:
-            max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 0.25s ease,
-            visibility 0s;
-    }
-
-    .drawerHeader {
-        display: none;
-    }
-
-    .drawerLinks {
-        padding: 1rem;
-    }
-
-    .drawerLink {
-        padding: 0.85rem 1.5rem;
-        font-size: 1rem;
-        white-space: nowrap;
-    }
-
-    .drawerLink:last-child {
-        border-bottom: none;
-    }
-}
-
-/* ══════════════════════════════════════
-   MOBILE (≤ 768px)
-   Drawer: entra de derecha a izquierda
-   ══════════════════════════════════════ */
-@media (max-width: 768px) {
-    .drawer {
+    @media (max-width: 768px) {
         position: fixed;
         top: 0;
         right: 0;
@@ -342,52 +460,30 @@
         transition:
             transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
             visibility 0s linear 0.35s;
+
     }
 
-    .drawerOpen {
-        transform: translateX(0);
-        transition:
-            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-            visibility 0s;
-    }
 
-    .drawerHeader {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem 1.5rem 1rem;
-        border-bottom: 1px solid #eee;
-    }
+}
 
-    .drawerTitle {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #333;
-        letter-spacing: 0.03em;
-    }
 
-    .closeBtn {
-        background: none;
-        border: none;
-        font-size: 1.1rem;
-        color: #666;
-        cursor: pointer;
-        padding: 4px 8px;
-        border-radius: 4px;
-        transition: background 0.2s;
-    }
 
-    .closeBtn:hover {
-        background: #f0f0f0;
-        color: #333;
-    }
 
-    .drawerLinks {
-        padding: 1rem 0;
-    }
+/* ── Overlay oscuro ── */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 100;
+    animation: fadeIn 0.25s ease;
 
-    .drawerLink {
-        padding: 1.2rem 1.5rem;
-        font-size: 1.1rem;
+    @media (min-width: 769px) {
+        background: transparent; /* solo sirve para cerrar al hacer click afuera */
+        animation: none;
     }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

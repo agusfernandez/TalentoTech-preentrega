@@ -4,10 +4,13 @@ import { db } from '../../firebase/config';
 import Spinner from './Spinner';
 import styles from './styles/Products.module.css';
 import {Link} from "react-router-dom";
+import SearchContainer from './SearchContainer';
+import { useSearch } from '../../context/SearchContext';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const {search} = useSearch();
 
     useEffect(() => {
         const getProducts = async () => {
@@ -44,8 +47,15 @@ const Products = () => {
         return <Spinner />;
     }
 
+       // Si hay búsqueda, se muestran solo los resultados
+    if (search.trim()) {
+        return <SearchContainer products={products} />;
+    }
+
+
     return (   
         <>
+
             <div className={styles.productsList}>
 
 

@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import styles from "./styles/Navbar.module.css";
+import { useSearch } from '../../context/SearchContext';
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart, User, ChevronDown } from 'lucide-react';
+import { ShoppingCart, User, ChevronDown,  Search, X} from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from "../../context/AuthContext";
-
+import styles from "./styles/Navbar.module.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const { search, setSearch} = useSearch();
   const { itemsInCart } = useCart();
   const totalItems = itemsInCart();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,6 +31,15 @@ const Navbar = () => {
   const handleLogout = () =>{
     closeAccount();
     logout();
+  }
+
+  const handleChanged = (event) => {
+    const value = event.target.value;
+    setSearch(value);
+
+    if(location.pathname !== "/products"){
+      navigate("/products");
+    }
   }
 
   // Cerrar con la tecla Escape
@@ -69,123 +79,136 @@ const Navbar = () => {
           <Link to="/" className={styles.logo}>Nórdico</Link>
         </div>
 
-        <div className={styles.navbarColumnRight}>
-          {/* Links principales */}
-          <div className={styles.navbarLinks}>
-            <li><Link to="/" end className={linkClass} onClick={closeMenu}>Inicio</Link></li>
-            <div className={styles.userLink}>
-                  {/* Cuenta y acciones */}
-                <ul className={styles.navbarActions}>
-                  {user ? (
-                    <li className={styles.account} ref={accountRef}>
-                      <button
-                        type="button"
-                        className={styles.accountTrigger}
-                        onClick={toggleAccount}
-                        aria-haspopup="menu"
-                        aria-expanded={accountOpen}
-                        aria-controls="menu-cuenta"
-                      >
-                        <User strokeWidth={1.2} size={22} />
-                        <span className={styles.greeting}>Hola, {user.email}</span>
-                        <ChevronDown
-                          size={16}
-                          strokeWidth={1.5}
-                          className={`${styles.chevron} ${accountOpen ? styles.chevronOpen : ''}`}
-                        />
-                      </button>
+            <div className={styles.navbarColumnCenter}>
+                <form className={styles.searchForm} onSubmit={(event) => event.preventDefault()}>
 
-                      {accountOpen && (
-                        <div id="menu-cuenta" className={styles.accountMenu} role="menu">
-                          {user.rol === "admin" && (
-                            <Link
-                              to="/panel"
-                              role="menuitem"
-                              className={styles.accountItem}
-                              onClick={closeAccount}
-                            >
-                              Panel
-                            </Link>
+                    <div className={styles.inputWrapper}>
+                      <input type="text" placeholder="Buscar productos" value={search} onChange={handleChanged} className={styles.searchInput}/><Search strokeWidth={1} aria-hidden="true" />
+                    </div>
+                    {search && (<button type="button" onClick={() => setSearch("")}  aria-label="Borrar búsqueda" className={styles.searchClear}><X strokeWidth={1} size={16}/></button>)}
+                </form>
+            </div>
+          
+
+            <div className={styles.navbarColumnRight}>
+                  {/* Links principales */}
+                  <div className={styles.navbarLinks}>
+                    <li><Link to="/" end className={linkClass} onClick={closeMenu}>Inicio</Link></li>
+                    <div className={styles.userLink}>
+                          {/* Cuenta y acciones */}
+                        <ul className={styles.navbarActions}>
+                          {user ? (
+                            <li className={styles.account} ref={accountRef}>
+                              <button
+                                type="button"
+                                className={styles.accountTrigger}
+                                onClick={toggleAccount}
+                                aria-haspopup="menu"
+                                aria-expanded={accountOpen}
+                                aria-controls="menu-cuenta"
+                              >
+                                <User strokeWidth={1.2} size={22} />
+                                <span className={styles.greeting}>Hola, {user.email}</span>
+                                <ChevronDown
+                                  size={16}
+                                  strokeWidth={1.5}
+                                  className={`${styles.chevron} ${accountOpen ? styles.chevronOpen : ''}`}
+                                />
+                              </button>
+
+                              {accountOpen && (
+                                <div id="menu-cuenta" className={styles.accountMenu} role="menu">
+                                  {user.rol === "admin" && (
+                                    <Link
+                                      to="/panel"
+                                      role="menuitem"
+                                      className={styles.accountItem}
+                                      onClick={closeAccount}
+                                    >
+                                      Panel
+                                    </Link>
+                                  )}
+                                  <button
+                                    type="button"
+                                    role="menuitem"
+                                    className={`${styles.accountItem} ${styles.accountItemDanger}`}
+                                    onClick={handleLogout}
+                                  >
+                                    Cerrar sesión
+                                  </button>
+                                </div>
+                              )}
+                            </li>
+                          ) : (
+                            <li>
+                              <Link to="/login" aria-label="Iniciar sesión">
+                                <User strokeWidth={1.2} />
+                              </Link>
+                            </li>
                           )}
-                          <button
-                            type="button"
-                            role="menuitem"
-                            className={`${styles.accountItem} ${styles.accountItemDanger}`}
-                            onClick={handleLogout}
-                          >
-                            Cerrar sesión
-                          </button>
-                        </div>
-                      )}
+                        </ul>
+                    </div>        
+
+
+                    {/* Botón hamburguesa */}
+                    <li className={styles.menu}>
+                      <button
+                        className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
+                        onClick={toggleMenu}
+                        aria-label="Abrir menú de categorías"
+                        aria-expanded={menuOpen}
+                        aria-controls="menu-categorias"
+                      >
+                        <span className={styles.bar}></span>
+                        <span className={styles.bar}></span>
+                        <span className={styles.bar}></span>
+                      </button>
                     </li>
-                  ) : (
-                    <li>
-                      <Link to="/login" aria-label="Iniciar sesión">
-                        <User strokeWidth={1.2} />
+
+                    {/* Carrito */}
+                    <li className={styles.cartLink}>
+                      <Link to="/cart" onClick={closeMenu}>
+                        <ShoppingCart strokeWidth={1} />
+                        {totalItems > 0 && <span className={styles.shoppingCount}>{totalItems}</span>}
                       </Link>
                     </li>
-                  )}
-                </ul>
-            </div>        
+                  
+                  </div>
 
-
-            {/* Botón hamburguesa */}
-            <li>
-              <button
-                className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
-                onClick={toggleMenu}
-                aria-label="Abrir menú de categorías"
-                aria-expanded={menuOpen}
-                aria-controls="menu-categorias"
-              >
-                <span className={styles.bar}></span>
-                <span className={styles.bar}></span>
-                <span className={styles.bar}></span>
-              </button>
-            </li>
-
-            {/* Carrito */}
-            <li className={styles.cartLink}>
-              <Link to="/cart" onClick={closeMenu}>
-                <ShoppingCart strokeWidth={1} />
-                {totalItems > 0 && <span className={styles.shoppingCount}>{totalItems}</span>}
-              </Link>
-            </li>
-          </div>
-
-          {/* Drawer: AHORA DENTRO DEL NAV */}
-          <div
-            id="menu-categorias"
-            className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}
-          >
-            <div className={styles.drawerHeader}>
-              <span className={styles.drawerTitle}>Categorías</span>
-              <button className={styles.closeBtn} onClick={closeMenu} aria-label="Cerrar menú">✕</button>
+                    {/* Drawer: AHORA DENTRO DEL NAV */}
+                    <div
+                      id="menu-categorias"
+                      className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}
+                    >
+                      <div className={styles.drawerHeader}>
+                        <span className={styles.drawerTitle}>Categorías</span>
+                        <button className={styles.closeBtn} onClick={closeMenu} aria-label="Cerrar menú">✕</button>
+                      </div>
+                      <ul className={styles.drawerLinks}>
+                        <li>
+                          <a onClick={() => handleCategoryNav('/new')} className={styles.drawerLink}>
+                            Novedades
+                          </a>
+                        </li>
+                        <li>
+                          <a onClick={() => handleCategoryNav('/products')} className={styles.drawerLink}>
+                          Todos los Productos
+                          </a>
+                        </li>
+                        <li>
+                          <a onClick={() => handleCategoryNav('/decoración')} className={styles.drawerLink}>
+                            Decoración
+                          </a>
+                        </li>
+                        <li>
+                          <a onClick={() => handleCategoryNav('/iluminación')} className={styles.drawerLink}>
+                            Iluminación
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
             </div>
-            <ul className={styles.drawerLinks}>
-              <li>
-                <a onClick={() => handleCategoryNav('/new')} className={styles.drawerLink}>
-                  Novedades
-                </a>
-              </li>
-              <li>
-                <a onClick={() => handleCategoryNav('/products')} className={styles.drawerLink}>
-                  Productos
-                </a>
-              </li>
-              <li>
-                <a onClick={() => handleCategoryNav('/decoración')} className={styles.drawerLink}>
-                  Decoración
-                </a>
-              </li>
-              <li>
-                <a onClick={() => handleCategoryNav('/iluminación')} className={styles.drawerLink}>
-                  Iluminación
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+                          
       </nav>
 
       {/* Overlay: queda afuera del nav */}
