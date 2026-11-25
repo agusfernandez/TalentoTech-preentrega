@@ -1,0 +1,58 @@
+.containerPagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+/* ── Base compartida: flechas y números ── */
+.buttonPagination,
+.buttonPage {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 0.6rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-transform: none;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    line-height: 1;
+}
+
+.buttonPagination:hover:not(:disabled),
+.buttonPage:hover:not(:disabled) {
+    background: #f5f5f5;
+    border-color: #bbb;
+}
+
+/* Flechas: un poco más anchas */
+.buttonPrevius,
+.buttonNext {
+    padding: 0 0.5rem;
+    color: #555;
+}
+
+/* Página activa */
+.activePage {
+    background: #0a0907;
+    border-color: #0a0907;
+    color: #fff;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+/* Deshabilitado */
+.buttonPagination:disabled,
+.buttonPage:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+}

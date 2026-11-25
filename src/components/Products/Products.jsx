@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { useState } from 'react';
 import { db } from '../../firebase/config';
 import Spinner from './Spinner';
 import styles from './styles/Products.module.css';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchContainer from './SearchContainer';
 import { useSearch } from '../../context/SearchContext';
 import { usePagination } from '../../hooks/usePagination';
@@ -12,79 +11,41 @@ import Pagination from '../Products/Pagination';
 const Products = () => {
 
     const {
-        elements: elements,
+        elements: products,
         actualPage,
         totalPages,
         loader,
-        goToPage
+        goToPage,
     } = usePagination({
         db,
-        nameCollection: "elements",
-        sizePage: 4,
-        orderCollection: 'name',
-        directionOrder : 'asc',
+        nameCollection: 'products',
+        sizePage: 8,
+        orderCollection: 'title',
+        directionOrder: 'asc',
     });
 
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const {search} = useSearch();
+    const { search } = useSearch();
 
-    useEffect(() => {
-        const getProducts = async () => {
-            try {
-                console.log('Iniciando conexión con Firestore...');
-                console.log('Firebase config - projectId:', import.meta.env.VITE_FIREBASE_PROJECTID);
-
-                const productsRef = collection(db, 'products');
-
-                const resp = await getDocs(productsRef);
-
-                const listProducts = resp.docs.map((doc) => ({
-                    ...doc.data(),
-                    id: doc.id
-                }));
-
-                console.log('Productos mapeados:', listProducts);
-                setProducts(listProducts);
-            } catch (error) {
-                console.error('❌ Error al traer productos de Firestore:', error);
-                console.error('Código de error:', error.code);
-                console.error('Mensaje:', error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        getProducts();
-
-
-    }, []);
-
-    if (loading) {
+    if (loader && products.length === 0) {
         return <Spinner />;
     }
 
-       // Si hay búsqueda, se muestran solo los resultados
+    // Si hay búsqueda activa, delegamos al buscador
     if (search.trim()) {
         return <SearchContainer products={products} />;
     }
 
-
-    return (   
+    return (
         <>
-
             <div className={styles.productsList}>
-
-
                 {products.length === 0 ? (
                     <p>No hay productos habilitados.</p>
                 ) : (
                     products.map(product => (
                         <div key={product.id} className={styles.cardContainer}>
                             <div className={styles.imageContainer}>
-                                <img src={product.image} alt={product.title} className={styles.productImage} />
+                                <img src={product.imageProduct || product.image} alt={product.title} className={styles.productImage} />
                                 <span className={styles.categorylegend}>{product.category}</span>
-
                             </div>
                             <div className={styles.infoProduct}>
                                 <Link to={`/product/${product.id}`} className={styles.productLink}>
@@ -98,18 +59,15 @@ const Products = () => {
                     ))
                 )}
             </div>
-                
+
             <Pagination
                 actualPage={actualPage}
                 totalPages={totalPages}
                 changePage={goToPage}
                 disable={loader}
-            
             />
-        
         </>
-    )
-
-}
+    );
+};
 
 export default Products;

@@ -9,7 +9,7 @@ const Pagination = ({
     disable
 
 }) => {
-    const segureFirstPage= Math.max(1, totalPages);
+    const segureFirstPage = Math.max(1, totalPages);
 
     const getPageNumber = () => {
         const half= Math.floor(visibleMax /2);
@@ -30,7 +30,7 @@ const Pagination = ({
     }
 
 
-    const visiblePages = getPageNumber;
+    const visiblePages = getPageNumber();
 
     const previousDisable = disable || actualPage <=1;
     const nextDisable = disable || actualPage >= segureFirstPage;
@@ -42,7 +42,7 @@ const Pagination = ({
             <nav className={styles.containerPagination} aria-label="Paginación">
 
                 {/* Previus Arrow */}
-                <button type="button" className={`${styles.buttonPagination}${styles.buttonPrevius}`} onClick={()=>changePage(actualPage-1) } disabled={previousDisable} aria-label="Pagina anterior" >
+                <button type="button" className={`${styles.buttonPagination} ${styles.buttonPrevius}`} onClick={()=>changePage(actualPage-1) } disabled={previousDisable} aria-label="Pagina anterior" >
                     <ChevronLeft strokeWidth={1} />
                 </button>
 
@@ -52,8 +52,8 @@ const Pagination = ({
                     <button
                         key={number}
                         type="button"
-                        className={`${styles.buttonPage}${number === actualPage ? styles.activePage : ''}`}
-                        onClick = {() => nextDisable(number)}
+                        className={`${styles.buttonPage} ${number === actualPage ? styles.activePage : ''}`}
+                        onClick={() => changePage(number)}
                         disabled = {disable}
                         aria-current = {number === actualPage ? 'page' : undefined}
                         >
@@ -64,7 +64,7 @@ const Pagination = ({
                 {/* Next Arrow */}
 
                    {/* Previus Arrow */}
-                <button type="button" className={`${styles.buttonPagination}${styles.buttonNext}`} onClick={()=>changePage(actualPage+1) } disabled={nextDisable} aria-label="Pagina posterior" >
+                <button type="button" className={`${styles.buttonPagination} ${styles.buttonNext}`} onClick={()=>changePage(actualPage+1) } disabled={nextDisable} aria-label="Pagina posterior" >
                     <ChevronRight strokeWidth={1} />
                 </button>   
 

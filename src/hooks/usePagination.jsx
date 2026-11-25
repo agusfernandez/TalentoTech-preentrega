@@ -41,7 +41,7 @@ export const usePagination = ({
 
         // Divide the total of productos againt the size of the page 
         const pages = Math.max(1, Math.ceil(totalProducts / sizePage));
-        setTotalPages(pageXOffset);
+        setTotalPages(pages);
 
         if (actualPage > pages) {
           setActualPages(pages);
