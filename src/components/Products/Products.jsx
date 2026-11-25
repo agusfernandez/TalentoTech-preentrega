@@ -6,8 +6,25 @@ import styles from './styles/Products.module.css';
 import {Link} from "react-router-dom";
 import SearchContainer from './SearchContainer';
 import { useSearch } from '../../context/SearchContext';
+import { usePagination } from '../../hooks/usePagination';
+import Pagination from '../Products/Pagination';
 
 const Products = () => {
+
+    const {
+        elements: elements,
+        actualPage,
+        totalPages,
+        loader,
+        goToPage
+    } = usePagination({
+        db,
+        nameCollection: "elements",
+        sizePage: 4,
+        orderCollection: 'name',
+        directionOrder : 'asc',
+    });
+
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const {search} = useSearch();
@@ -81,6 +98,14 @@ const Products = () => {
                     ))
                 )}
             </div>
+                
+            <Pagination
+                actualPage={actualPage}
+                totalPages={totalPages}
+                changePage={goToPage}
+                disable={loader}
+            
+            />
         
         </>
     )
